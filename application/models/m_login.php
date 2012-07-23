@@ -66,6 +66,43 @@ class M_login extends CI_Model{
 		   $data['text'] .=  '<p>表item已经被创建!</p>';
 	   }
 
+		$fields_user = array(
+			'id' => array(
+				'type' => 'INT',
+				'constraint' => '128',
+				'unsigned' => TRUE,
+				'auto_increment' => TRUE,
+			),
+			'nick' => array(
+				 'type' => 'VARCHAR',
+				 'constraint' => '128',
+		  ),
+			'avatar_url' => array(
+				 'type' => 'VARCHAR',
+				 'constraint' => '512',
+		  ),
+			'email' => array(
+				 'type' => 'VARCHAR',
+				 'constraint' => '128',
+		  ),
+			'open_id' => array(
+				 'type' => 'FLOAT'
+		  ),
+			'access_token' => array(
+				 'type' => 'VARCHAR',
+				 'constraint' => '128',
+		  ),
+		);
+
+		$this->dbforge->add_field($fields_user);
+		$this->dbforge->add_key('id');
+
+		//创建表user，如果不存在
+	   if($this->dbforge->create_table('user', TRUE))
+	   {
+		   $data['text'] .=  '<p>表user已经被创建!</p>';
+	   }
+
 		$fields_topic = array(
 			'id' => array(
 				'type' => 'INT',
@@ -118,7 +155,7 @@ class M_login extends CI_Model{
 	   }
 
 
-		$fields_user = array(
+		$fields_admin = array(
 			'user_email' => array(
 				 'type' => 'VARCHAR',
 				 'constraint' => '128',
@@ -133,18 +170,18 @@ class M_login extends CI_Model{
 		  )
 		);
 
-		$this->dbforge->add_field($fields_user);
+		$this->dbforge->add_field($fields_admin);
 		$this->dbforge->add_key('user_email',TRUE);
 
 		//创建表topic，如果不存在
-	   if($this->dbforge->create_table('user', TRUE))
+	   if($this->dbforge->create_table('admin', TRUE))
 	   {
-		   $data['text'] .=  '<p>表user已经被创建!</p>';
+		   $data['text'] .=  '<p>表admin已经被创建!</p>';
 		   $data['text'] .=  '<p>请输入管理员帐号信息!</p>';
 	   }
 
 		//检查是否已经存在一个admin
-		$data['is_installed'] = $this->db->get('user')->num_rows();
+		$data['is_installed'] = $this->db->get('admin')->num_rows();
 
 		return $data;
 

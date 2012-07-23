@@ -16,7 +16,7 @@ if(isset($_POST['user_email']) && isset($_POST['user_password'])){
 	$user_email = $_POST['user_email'];
 	$user_password = md5($_POST['user_password']);
 
-	$query = $this->db->get_where('user', array('user_email' => $user_email,'user_password' => $user_password));
+	$query = $this->db->get_where('admin', array('user_email' => $user_email,'user_password' => $user_password));
 	$result = $query->result();
 
 	if(empty($result)){

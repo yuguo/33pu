@@ -16,6 +16,28 @@ class Login extends CI_Controller {
 	}
 
 	/**
+	 * 使用第三方登录OAuth2.0
+	 *
+	 */
+	function oauth_qq(){
+		$this->config->load('oauth_qq');
+		$url = $this->config->item('authorize_url')."?client_id=".$this->config->item('api_key')."&response_type=code&redirect_uri=".$this->config->item('callback_url');
+		header('location:'.$url);
+	}
+
+	/**
+	 * OAuth回调认证
+	 *
+	 */
+	function oauth_access_qq(){
+		$this->load->model('M_oauth');
+		$code =$_GET['code'];
+		$user_info = $this->M_oauth->get_user_info($code);
+		echo $user_info;
+
+	}
+
+	/**
 	 * 初次安装
 	 *
 	 */

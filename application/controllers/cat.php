@@ -24,7 +24,7 @@ class Cat extends CI_Controller {
 	 */
 	public function index($cat_slug,$offset = 0)
 	{
-       $this->output->cache(10);
+       //$this->output->cache(10);
 	   // todo 修改为页码数
 
 		$limit=40;

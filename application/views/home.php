@@ -8,8 +8,6 @@ if(!empty($cat_slug)){
 }else{
 	$query=$this->M_item->get_all_item($limit,$offset);
 }
-
-
 ?>
 <!DOCTYPE html>
 <html dir="ltr" lang="zh-CN">
@@ -29,7 +27,11 @@ if(!empty($cat_slug)){
         <h1>
             <a href="http://33pu.net/" title="33号铺" rel="home" class="logo">33号铺</a>
         </h1>
+			<div id="site-op">
+			<a href="<?php echo site_url('login/oauth_qq')?>" title="使用QQ帐号登录33号铺" class="qq-login">QQ登录</a>
+		</div>
     </div>
+
 </header>
 
 <nav class="main_nav">
