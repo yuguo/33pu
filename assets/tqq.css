@@ -1,0 +1,52 @@
+#wrapper {width:960px;margin:30px auto 20px;}
+
+/* =Header
+-------------------------------------------------------------- */
+#branding {}
+/* logo */
+#site-title {padding:10px 0;width: 960px;margin: 0 auto;position:relative;}
+#site-title .logo {display:inline-block;*display:inline;zoom:1;line-height:900px;overflow:hidden;font-size:0;
+	background-image: url(img/logo.png);height:56px;width:105px;}
+/* 顶部登录 */
+#branding .top-login {position: absolute;right: 10px;top: 10px;font-weight:normal;height:30px;line-height:30px;}
+#branding .top-login a {margin-left:10px;}
+#branding .top-login a{display:inline-block;*display:inline;zoom:1;vertical-align:middle;margin-left:10px;height:24px;line-height:24px;}
+
+/* 主导航 */
+.main_nav {margin-bottom:40px;}
+.main_nav ul {width:960px;margin:0 auto;padding:4px 0;font-size:14px;overflow:hidden;*zoom:1;list-style-type:none;}
+.main_nav li {float:left;padding: 0 10px;}
+.main_nav li:first-child {border-left:0;}
+.main_nav li:last-child {border-right:0;}
+.main_nav a {text-decoration:none;display:block;padding:5px 10px;color:#444;
+}
+.main_nav .current-menu-item a {border-bottom:3px solid #b00;}
+.main_nav a:hover {border-bottom:3px solid #b00;}
+
+/* =画报流
+-------------------------------------------------------------- */
+.goods-all {overflow:hidden;*zoom:1;}
+.goods {float:left;margin:0 0 30px;padding:5px;;width:230px;}
+.goods .goods-pic { position:relative;margin-bottom:5px;height:230px;width:230px;}
+.goods .goods-pic .thumbnail { display:block;text-decoration:none;position:absolute;bottom:0;
+-webkit-transition: opacity 0.3s;
+-moz-transition: opacity 0.3s;
+transition: opacity 0.3s;}
+.goods .goods-pic .btn_delete {position:absolute;top:0;right:0;display:none;font-weight:bold;text-decoration:none;font-size:18px;}
+.goods .goods-pic .label  {position:relative;z-index:10;}
+.goods:hover .goods-pic .btn_delete {display:block;}
+.goods .goods-pic img { max-width:230px; max-height:230px; display:block;}
+.goods .op {text-align:center;color:#444;opacity:0;line-height:2;
+	transition: opacity 0.3s;
+-moz-transition: opacity 0.3s; /* Firefox 4 */
+-webkit-transition: opacity 0.3s; /* Safari and Chrome */
+-o-transition: opacity 0.3s; /* Opera */}
+.goods:hover .op {opacity:1;}
+
+.goods .desc {overflow:hidden;*zoom:1;}
+.goods .desc a {color:#444;}
+
+/* 翻页 */
+.pagenav {clear: both;text-align: center;}
+.pagenav a, .pagenav strong {display: inline-block;*display: inline;zoom: 1;text-decoration: none;text-align: center;width: 60px;color: #999;font-weight: bold;border-right: 1px solid #bbb;}
+.pagenav a, .pagenav strong {color:#444;}

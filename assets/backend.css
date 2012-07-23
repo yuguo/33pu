@@ -1,0 +1,58 @@
+/*
+Copyright (c) 2011, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.com/yui/license.html
+version: 2.9.0
+*/
+
+body {padding-top:40px;}
+.right {float:right;}
+.left {float:left;}
+/* =Structure
+-------------------------------------------------------------- */
+/* Tweak navbar brand link to be super sleek
+-------------------------------------------------- */
+.navbar-fixed-top .brand {
+  padding-right: 0;
+  padding-left: 0;
+  margin-left: 20px;
+  float: right;
+  font-weight: bold;
+  color: #000;
+  text-shadow: 0 1px 0 rgba(255,255,255,.1), 0 0 30px rgba(255,255,255,.125);
+  -webkit-transition: all .2s linear;
+     -moz-transition: all .2s linear;
+          transition: all .2s linear;
+}
+.navbar-fixed-top .brand:hover {
+  text-decoration: none;
+}
+
+/* 首页 */
+#index_search {width:340px;margin:200px auto 10px;position:relative;padding:25px 30px 10px 140px;}
+#index_search .logo {position:absolute;left:30px;top:10px;}
+#manage_links {position:absolute;top:20px;right:20px;}
+
+#pop_add_topic {width:600px;margin-left:-300px;}
+
+.logo {display:inline-block;*display:inline;zoom:1;height:56px;width:105px;background-image: url(img/logo.png);}
+
+/* 搜索结果页 */
+#search_input {background: #F7F7F7;padding:25px 30px 10px 140px;;margin-bottom:20px;position:relative;}
+#search_input .logo {position:absolute;left:30px;top:10px;}
+
+#search-list {overflow:hidden;*zoom:1;}
+#search-list p {margin:2px 0;}
+#search-list li {float:left;padding:5px;background: #F7F7F7;margin:0 10px 10px 0;list-style-type:none;color:#B3B3B3;}
+#search-list li a {display:block;cursor:pointer;}
+#search-list li img {height:200px;}
+
+
+#pop-pictures  {overflow:hidden;*zoom:1;}
+#pop-pictures  li {float:left;padding:5px;background: #F7F7F7;margin:0 10px 10px 0;list-style-type:none;color:#B3B3B3;}
+#pop-pictures  li a {display:block;cursor:pointer;}
+#pop-pictures  li img {height:200px;}
+
+/* 条目检索页 */
+#page-items {width:1200px;margin:20px auto;}
+#page-items table img {height:80px;width:80px;}
