@@ -1,4 +1,4 @@
-1343136341TS---><!DOCTYPE html>
+1343138670TS---><!DOCTYPE html>
 <html dir="ltr" lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
@@ -16,7 +16,11 @@
         <h1>
             <a href="http://localhost/33pu/" title="33号铺" rel="home" class="logo">33号铺</a>
         </h1>
+			<div id="site-op" class="hide">
+				<a href="http://localhost/33pu/login/oauth_qq" title="使用QQ帐号登录33号铺" class="qq-login">QQ登录</a>
+			</div>
     </div>
+
 </header>
 
 <nav class="main_nav">
@@ -30,6 +34,32 @@
 <div id="wrapper">
 
 		<div class="goods-all transitions-enabled masonry">
+	
+		<article class="goods">
+			<div class="entry-content">
+			<div class="goods-pic">
+				<img src="http://localhost/33pu/images/14012133964.jpg" class="thumbnail" alt="" title="MIX2 2012新品男装男T恤潮男休闲T恤男士纯棉短袖t恤夏装L22T76A1">
+
+			</div>
+				<div class="op"><div class="desc">混合二次方旗舰店   / <strong>RMB172.55</strong></div>
+				<div class="buttonline">
+					<a href="http://localhost/33pu/home/redirect/5" title="去购买" class="btn btn-success" target="_blank">去购买</a>
+				</div></div>
+			</div>
+		</article>
+	
+		<article class="goods">
+			<div class="entry-content">
+			<div class="goods-pic">
+				<img src="http://localhost/33pu/images/13971867286.jpg" class="thumbnail" alt="" title="【AK男装】2012秋季新品四扣棒球领休闲袖绊长袖T恤 （A173003）">
+
+			</div>
+				<div class="op"><div class="desc">akseries旗舰店   / <strong>RMB139</strong></div>
+				<div class="buttonline">
+					<a href="http://localhost/33pu/home/redirect/4" title="去购买" class="btn btn-success" target="_blank">去购买</a>
+				</div></div>
+			</div>
+		</article>
 	
 		<article class="goods">
 			<div class="entry-content">
@@ -73,6 +103,11 @@
 	<div class="pagenav">
 			</div>
 	</div>
+
+<footer id="ft" class="main-footer" role="contentinfo">
+		<p><a href="http://localhost/33pu/" title="33号铺">33号铺</a> ©   • Powered by <a href="https://github.com/yuguo/33pu" title="Powered by 33号铺, 一个开源的购物推荐系统">33号铺</a></p>
+</footer>
+
 
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

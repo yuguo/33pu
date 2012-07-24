@@ -27,9 +27,9 @@ if(!empty($cat_slug)){
         <h1>
             <a href="<?php echo site_url();?>" title="<?php echo $site_name;?>" rel="home" class="logo"><?php echo $site_name;?></a>
         </h1>
-			<div id="site-op">
-			<a href="<?php echo site_url('login/oauth_qq')?>" title="使用QQ帐号登录33号铺" class="qq-login">QQ登录</a>
-		</div>
+			<div id="site-op" class="hide">
+				<a href="<?php echo site_url('login/oauth_qq')?>" title="使用QQ帐号登录33号铺" class="qq-login">QQ登录</a>
+			</div>
     </div>
 
 </header>
@@ -84,6 +84,11 @@ if(!empty($cat_slug)){
 	</div>
 	<? } ?>
 </div>
+
+<footer id="ft" class="main-footer" role="contentinfo">
+		<p><a href="<?php echo site_url();?>" title="<?php echo $site_name;?>"><?php echo $site_name;?></a> ©   • Powered by <a href="https://github.com/yuguo/33pu" title="Powered by 33号铺, 一个开源的购物推荐系统">33号铺</a></p>
+</footer>
+
 
 <script type="text/javascript">
 var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");

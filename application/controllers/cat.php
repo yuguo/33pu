@@ -27,6 +27,8 @@ class Cat extends CI_Controller {
        //$this->output->cache(10);
 	   // todo 修改为页码数
 
+		$this->config->load('site_info');
+
 		$limit=40;
 		//每页显示数目
 
@@ -55,6 +57,9 @@ class Cat extends CI_Controller {
 		$data['cat']=$this->M_cat->get_all_cat();
 
 		$data['cat_slug'] = $cat_slug;
+
+		//站点信息
+		$data['site_name'] = $this->config->item('site_name');
 
 		$this->load->view('home',$data);
 

@@ -52,3 +52,8 @@ transition: opacity 0.3s;
 .pagenav {clear: both;text-align: center;}
 .pagenav a, .pagenav strong {display: inline-block;*display: inline;zoom: 1;text-decoration: none;text-align: center;width: 60px;color: #999;font-weight: bold;border-right: 1px solid #bbb;}
 .pagenav a, .pagenav strong {color:#444;}
+
+/* =Footer
+-------------------------------------------------------------- */
+.main-footer p, .main-footer p a {color: #666666;text-align: center;}
+.main-footer {display: block;margin: 20px 0 40px;clear: both;}

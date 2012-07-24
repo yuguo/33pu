@@ -25,8 +25,6 @@
 
 <?php
 
-
-
 //打印XML中的条目信息
 puPrintItem($resp);
 
