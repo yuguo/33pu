@@ -68,16 +68,6 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/search_view',$data);
 	}
 
-
-	/**
-	 * 管理类目
-	 */
-	public function cat(){
-		$data['cat'] = $this->M_cat->get_all_cat();
-		$this->load->view('admin/include_header');
-		$this->load->view('admin/cat_view',$data);
-	}
-
 	/**
 	 * 统计页
 	 *
@@ -140,6 +130,17 @@ class Admin extends CI_Controller {
 		}
 	}
 
+
+	/**
+	 * 管理类目
+	 */
+	public function cat(){
+		$data['cat'] = $this->M_cat->get_all_cat();
+		$data['cat_saved'] = false;
+		$this->load->view('admin/include_header');
+		$this->load->view('admin/cat_view',$data);
+	}
+
     /**
      * 增加类目
      *
@@ -154,7 +155,7 @@ class Admin extends CI_Controller {
 
 	public function catupdate_op(){
 		$this->M_cat->update_cat();
-
+		$data['cat_saved'] = true;
         $data['cat'] = $this->M_cat->get_all_cat();
         $this->load->view('admin/include_header');
         $this->load->view('admin/cat_view',$data);
@@ -164,6 +165,7 @@ class Admin extends CI_Controller {
 	public function catadd_op(){
         $this->M_cat->add_cat();
         $data['cat'] = $this->M_cat->get_all_cat();
+		$data['cat_saved'] = false;
         $this->load->view('admin/include_header');
         $this->load->view('admin/cat_view',$data);
 	}

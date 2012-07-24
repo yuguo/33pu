@@ -1,3 +1,15 @@
+<?php
+//如果是保存成功
+if($cat_saved)
+{
+	?>
+<div class="alert fade in">
+<strong>成功</strong> 类别信息已经成功保存！
+</div>
+	<?php
+}
+?>
+
 <table class="table">
         <tbody>
         <?php
@@ -14,7 +26,7 @@
 			 ?>
         </tbody>
       </table>
-<a href="#" title="" class="btn btn-primary" id="btn-save">保存</a>
+<a href="##" title="" class="btn btn-primary" id="btn-save">保存</a>
 <a href="<?php echo site_url('admin/catadd')?>" title="">新增类别</a>
 
 
@@ -44,11 +56,8 @@
 
                         document.body.appendChild(form);
                         form.submit();
+            });
 
-
-            }
-
-            );
         })(jQuery);
     </script>
 
