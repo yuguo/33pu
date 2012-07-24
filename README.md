@@ -6,13 +6,14 @@
 Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 
 ## 安装 ##
-1. 配置`application/config/config.php`为你的站点url，配置application/config/site_info.php中的站点名称、appkey、secret还有最重要的taobaoke pid。
-2. 配置`application/database`中的 `username`，`password`，`database`
-3. 访问 `站点url/login/install`，输入管理员的email和密码
+1. 配置 `application/config/config.php` 为你的站点url，配置 `application/config/site_info.php` 中的站点名称、appkey、secret还有最重要的taobaoke pid。
+2. 配置 `application/database` 中的 `username`，`password`，`database`
+3. 访问 `站点url/login/install` ，输入管理员的email和密码
 4. 访问 `站点url/login` 登录
 5. 访问 `站点url/admin/cat` 新增你的站点的商品类别（类别会出现在首页tab中）
 6. 访问 `站点url/admin/cat` 修改类别slug为英文（中文url目前有bug，而且不优雅）
 7. 访问 `站点url/admin` ，选择类别之后搜索关键词，点击某个条目之后再选择图片，条目就会出现在首页（请选择类别之后再搜索关键词，这样条目会自动添加到该类别）
+8. 请修改 `application/views/home.php` 底部的统计代码为你自己的百度统计或者Google Analytics.
 
 ## 说明 ##
 - 后台搜索的时候的过滤条件在后台配置是，您可以自己修改配置`application/models/m_taobaoapi.php`：
@@ -24,7 +25,8 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 - 为了帮助更多人，希望你能保留底部的版权，声明站点是由33号铺构建，但这并不是必须的
 
 ## 联系 ##
-- 代码还在不断完善中，有任何意见和建议：
+代码还在不断完善中，有任何意见和建议：
+
 - Email：fishguo321@gmail.com
 - 腾讯微博：[http://t.qq.com/chandleryu](http://t.qq.com/chandleryu)
 - Twitter：[yuguo](http://twitter.com/#!yuguo)
