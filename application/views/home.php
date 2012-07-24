@@ -15,7 +15,7 @@ if(!empty($cat_slug)){
 <html dir="ltr" lang="zh-CN">
 <head>
 <meta charset="UTF-8" />
-	<title>33号铺</title>
+	<title><?php echo $site_name;?></title>
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/index.css?d=20120705" />
 	<!--[if lt IE 9]>
@@ -27,7 +27,7 @@ if(!empty($cat_slug)){
 <header id="branding" role="banner">
     <div id="site-title">
         <h1>
-            <a href="http://33pu.net/" title="33号铺" rel="home" class="logo">33号铺</a>
+            <a href="<?php echo site_url();?>" title="<?php echo $site_name;?>" rel="home" class="logo"><?php echo $site_name;?></a>
         </h1>
     </div>
 </header>

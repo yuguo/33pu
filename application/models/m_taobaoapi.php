@@ -5,10 +5,13 @@ class M_taobaoapi extends CI_Model{
 	function __construct()
 	{
 		parent::__construct();
+		$this->config->load('site_info');
 
         define('APPKEY',    '12673864');
         define('SECRETKEY',    'd4cb57d3eec5d6f1cbbfd0f430caf282');
-        define('PID',    30103010);
+
+		//淘宝客PID请在application/config/site_info中设置
+        define('PID',    $this->config->item('taobaoke_id'));
 
         include "taobaoapi/TopSdk.php";
         //将下载SDK解压后top里的TopClient.php第8行$gatewayUrl的值改为沙箱地址:http://gw.api.tbsandbox.com/router/rest,

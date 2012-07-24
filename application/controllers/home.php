@@ -16,7 +16,8 @@ class Home extends CI_Controller {
 	 * @para integer 查询数据库时设定的偏移数量
 	 */
 	public function index($offset = 0)
-	{$this->output->cache(10);
+	{
+		$this->config->load('site_info');
         $this->output->cache(10);
 		$limit=40;
 		//每页显示数目
@@ -45,6 +46,10 @@ class Home extends CI_Controller {
 
 		$query = $this->M_cat->get_all_cat();
 		$data['cat'] = $query;
+
+		//站点信息
+		$data['site_name'] = $this->config->item('site_name');
+
 		$this->load->view('home',$data);
 	}
 
