@@ -171,7 +171,10 @@ $robots = array(
 					'askjeeves'			=> 'AskJeeves',
 					'fastcrawler'		=> 'FastCrawler',
 					'infoseek'			=> 'InfoSeek Robot 1.0',
-					'lycos'				=> 'Lycos'
+					'lycos'				=> 'Lycos',
+					'baiduspider'                     =>'Baidu',
+					'sosospider'                     =>'Soso',
+					'youdaobot'                       =>'Youdao'
 				);
 
 /* End of file user_agents.php */

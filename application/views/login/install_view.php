@@ -15,7 +15,7 @@ if(!empty($_POST['user_email'])){
 	$user_email = $_POST['user_email'];
 	$user_password = md5($_POST['user_password']);
 
-	$query = $this->db->insert('user', array('user_email' => $user_email,'user_password' => $user_password));
+	$query = $this->db->insert('admin', array('user_email' => $user_email,'user_password' => $user_password));
 
 
 	//  当验证通过后，启动 Session
@@ -38,7 +38,7 @@ if(!empty($_POST['user_email'])){
 	}
 ?>
 
-<form action="<?php echo site_url('login/newadmin')?>" method="post">
+<form action="<?php echo site_url('login/install')?>" method="post">
 <p><input name="user_email" type="text" placeholder="Email" /></p>
 <p><input name="user_password" type="password" placeholder="密码" /></p>
 <p><input type="submit" value="创建" class="btn btn-success"></p>

@@ -17,8 +17,10 @@ class Home extends CI_Controller {
 	 */
 	public function index($offset = 0)
 	{
+
 		$this->config->load('site_info');
         $this->output->cache(10);
+
 		$limit=40;
 		//每页显示数目
 

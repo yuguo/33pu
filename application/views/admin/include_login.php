@@ -7,7 +7,7 @@
  */
 
 
-$query = $this->db->get_where('user', array('user_email' => $this->input->cookie('user_email', TRUE),'user_password' =>$this->input->cookie('user_password', TRUE)));
+$query = $this->db->get_where('admin', array('user_email' => $this->input->cookie('user_email', TRUE),'user_password' =>$this->input->cookie('user_password', TRUE)));
 $result = $query->result();
 if(empty($result)){
     //跳转
