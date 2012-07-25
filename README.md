@@ -2,8 +2,17 @@
 
 33号铺是一个简单好用的淘宝客瀑布流发布、管理系统。demo：[33号铺](http://33pu.net)
 
+## 设计理念 ##
+33号铺的设计理念是，做一个体验最好的导购系统。
+
+- 相信PGC（Professional Generated Content），而不是蘑菇街那样的UGC。但不排除加入投票系统。
+- 相信人工的推荐，而不是机器采集。机器采集的垃圾站我见过很多，大部分是根据taobao API批量拉取数据，这个功能很好做，但是我不希望做自动采集的站点，这对用户是没有好处的。所以33号铺的优化目标是尽量优化人工采集的流程，后台也好，书签也好，url转化也好。
+- 重视用户体验，相信用户体验也可以卖钱。所以33号铺会不断优化站长和访客的体验。
+
 ## 下载 ##
 Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
+
+或者下载最新的ZIP
 
 ## 安装 ##
 1. 配置 `application/config/config.php` 为你的站点url，配置 `application/config/site_info.php` 中的站点名称、appkey、secret还有最重要的taobaoke pid。
@@ -24,10 +33,17 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 - 关于为什么要想到做这个系统的两篇文章：[先做一半](http://yuguo.us/weblog/half-first/) [利用淘宝API构建淘宝客自动发布系统](http://yuguo.us/weblog/a-cps-cms-build-with-taobao-api/) 
 - 为了帮助更多人，希望你能保留底部的版权，声明站点是由33号铺构建，但这并不是必须的
 
+## 系统架构 ##
+
+- 整站大部分代码是PHP，基于[CodeIgniter](http://codeigniter.org.cn/)构建，CodeIgniter是一个非常适合快速开发的PHP框架。
+- 后台UI基于[Bootstrap](http://twitter.github.com/bootstrap/)构建。
+- 整站的JS都是基于[jQuery](http://jquery.com/)构建。
+- 数据来源于[淘宝开放平台](http://open.taobao.com/index.htm)。
+
 ## 联系 ##
 代码还在不断完善中，有任何意见和建议：
 
 - Email：fishguo321@gmail.com
 - 腾讯微博：[http://t.qq.com/chandleryu](http://t.qq.com/chandleryu)
-- Twitter：[yuguo](http://twitter.com/#!yuguo)
+- Twitter：[yuguo](https://twitter.com/yuguo)
 - 个人主页：[http://yuguo.us](http://yuguo.us)
