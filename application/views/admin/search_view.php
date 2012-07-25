@@ -130,7 +130,7 @@ function puPrintItem($resp){
                                },
                                function(data) {
                                  $('#pop-pictures .modal-body').html('成功！');
-                                 $('.modal').modal('hide')();
+                                 $('.modal').modal('hide');
                                });
 
                                event.preventDefault();
