@@ -79,10 +79,13 @@ if(!empty($cat_slug)){
 		</article>
 	<?endforeach;?>
 	</div>
-	<div class="pagenav">
-		<?=$pagination;?>
-	</div>
-	<? } ?>
+        <div class="pagenav_wrapper">
+            <div class="pagenav">
+            		<?=$pagination;?>
+            	</div>
+        </div><!-- .pagenav_wrapper -->
+
+    	<? } ?>
 </div>
 
 <footer id="ft" class="main-footer" role="contentinfo">
