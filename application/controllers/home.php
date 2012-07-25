@@ -19,7 +19,7 @@ class Home extends CI_Controller {
 	{
 
 		$this->config->load('site_info');
-        $this->output->cache(10);
+        //$this->output->cache(10);
 
 		$limit=40;
 		//每页显示数目
