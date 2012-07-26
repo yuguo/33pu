@@ -103,31 +103,6 @@ class M_login extends CI_Model{
 		   $data['text'] .=  '<p>表user已经被创建!</p>';
 	   }
 
-		$fields_topic = array(
-			'id' => array(
-				'type' => 'INT',
-				'constraint' => '128',
-				'unsigned' => TRUE,
-				'auto_increment' => TRUE,
-			),
-			'title' => array(
-				 'type' => 'VARCHAR',
-				 'constraint' => '128',
-		  ),
-			'slug' => array(
-				 'type' => 'VARCHAR',
-				 'constraint' => '128',
-		  )
-		);
-
-		$this->dbforge->add_field($fields_topic);
-		$this->dbforge->add_key('id');
-
-		//创建表topic，如果不存在
-	   if($this->dbforge->create_table('topic', TRUE))
-	   {
-		   $data['text'] .=  '<p>表topic已经被创建!</p>';
-	   }
 
 
 		$fields_cat = array(
@@ -148,7 +123,7 @@ class M_login extends CI_Model{
 		$this->dbforge->add_field($fields_cat);
 		$this->dbforge->add_key('cat_id',TRUE);
 
-		//创建表topic，如果不存在
+		//创建表cat，如果不存在
 	   if($this->dbforge->create_table('cat', TRUE))
 	   {
 		   $data['text'] .=  '<p>表cat已经被创建!</p>';
@@ -173,7 +148,7 @@ class M_login extends CI_Model{
 		$this->dbforge->add_field($fields_admin);
 		$this->dbforge->add_key('user_email',TRUE);
 
-		//创建表topic，如果不存在
+		//创建表admin，如果不存在
 	   if($this->dbforge->create_table('admin', TRUE))
 	   {
 		   $data['text'] .=  '<p>表admin已经被创建!</p>';
