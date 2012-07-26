@@ -102,22 +102,30 @@ function puPrintItem($resp){
                 var $item = {};
 				$('#pop-pictures .modal-body').html('<p>正在保存图片……</p>');
 
-				$.post('<?php echo site_url("admin/saveimage/")?>',
-				{
-					img_source_url: $img_url,
-					img_new_name: global_itemid
-				},
-						function(data){
-                            $('#pop-pictures .modal-body').append('<p>图片保存成功……</p>');
-                            $item.img_url = data;
-                            $item.sellernick = global_sellernick;
-                            $item.title = global_title;
-                            $item.price = global_price;
-                            $item.click_url = global_clickurl;
-                            $item.cid = global_cid;
+				$.ajax({
+                    type: "POST",
+                    url:'<?php echo site_url("admin/saveimage/") ?>',
+                    data:({
+                                img_source_url: $img_url,
+                                img_new_name: global_itemid
+                            })
+                }).done(function(data){
+                        var dtd = $.Deferred(); // 新建一个deferred对象
+                        if(data == 0){
+                            alert("图片保存失败！");
+                            dtd.reject();
+                            return dtd;
+                        }
 
-						}).then(
-                    function(){
+                        $('#pop-pictures .modal-body').append('<p>图片保存成功……</p>');
+                        $item.img_url = data;
+                        $item.sellernick = global_sellernick;
+                        $item.title = global_title;
+                        $item.price = global_price;
+                        $item.click_url = global_clickurl;
+                        $item.cid = global_cid;
+                    })
+                    .done(function(){
                         $('#pop-pictures .modal-body').append('<p>保存条目……</p>');
                         console.log($item);
                         $.post('<?php echo site_url("admin/setitem/")?>',
@@ -134,7 +142,8 @@ function puPrintItem($resp){
                                });
 
                                event.preventDefault();
-                    },function(){
+                    })
+                    .fail(function(){
                         alert("保存条目失败！");
                     }
                 );

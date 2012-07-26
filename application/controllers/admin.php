@@ -13,7 +13,6 @@ class Admin extends CI_Controller {
 		{
 			parent::__construct();
 			$this->load->model('M_item');
-			$this->load->model('M_topic');
 			$this->load->model('M_cat');
 			$this->load->view('admin/include_login');
 		}
@@ -24,8 +23,6 @@ class Admin extends CI_Controller {
 	 */
 	public function index()
 	{
-        //$query = $this->M_topic->get_all_topic();
-        //$data['query'] = $query;
 		$this->load->view('admin/include_header');
 		$this->load->view('admin/index_view');
 	}
@@ -217,20 +214,21 @@ class Admin extends CI_Controller {
 	}
 
 	/**
-	 *  保存话题
-	 *
-	 */
-    public function settopic(){
-		$data['state'] = $this->M_topic->set_topic();
-	}
-
-	/**
 	 * 保存图片
 	 *
 	 * 抓取远程图片，保存到本地，尺寸为230px
 	 */
 	public function saveimage(){
-		$data['state'] = $this->M_item->save_image();
+        $image_source_url = $_POST['img_source_url'];
+      	$image_new_name = $_POST['img_new_name'];
+        try{
+		 $this->M_item->save_image($image_source_url,$image_new_name);
+        }
+        catch(Exception $e)
+          {
+          //输出0表示保存图片失败，js端处理
+          echo 0;
+          }
 	}
 
     /**
