@@ -21,7 +21,7 @@ if(!empty($cat_slug)){
       <li class=""><a href="<?php echo site_url('admin/status/cats')?>">按类别</a></li>
     </ul>
 
-	<? if($query->num_rows()>0){ ?>
+	<?php if($query->num_rows()>0){ ?>
 	<table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -56,7 +56,7 @@ if(!empty($cat_slug)){
 	<div class="pagenav">
 		<?=$pagination;?>
 	</div>
-	<? } ?>
+	<?php } ?>
 </div>
 
 

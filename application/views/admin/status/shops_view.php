@@ -6,7 +6,7 @@
       <li class=""><a href="<?php echo site_url('admin/status/cats')?>">按类别</a></li>
     </ul>
 
-	<? if($query->num_rows()>0){ ?>
+	<?php if($query->num_rows()>0){ ?>
 	<table class="table table-bordered table-striped">
     <thead>
       <tr>
@@ -39,7 +39,7 @@
 		</tbody>
   </table>
 
-	<? } ?>
+	<?php } ?>
 </div>
 
 </div>
