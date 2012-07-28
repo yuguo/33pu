@@ -13,7 +13,6 @@ class Admin extends CI_Controller {
 		{
 			parent::__construct();
 			$this->load->model('M_item');
-			$this->load->model('M_topic');
 			$this->load->model('M_cat');
 			$this->load->view('admin/include_login');
 		}
@@ -24,8 +23,6 @@ class Admin extends CI_Controller {
 	 */
 	public function index()
 	{
-        //$query = $this->M_topic->get_all_topic();
-        //$data['query'] = $query;
 		$this->load->view('admin/include_header');
 		$this->load->view('admin/index_view');
 	}
@@ -216,13 +213,6 @@ class Admin extends CI_Controller {
 		$data['state'] = $this->M_item->set_item();
 	}
 
-	/**
-	 *  保存话题
-	 *
-	 */
-    public function settopic(){
-		$data['state'] = $this->M_topic->set_topic();
-	}
 
 	/**
 	 * 保存图片
