@@ -1,4 +1,4 @@
-# [33号铺](http://33pu.net) #
+﻿# [33号铺](http://33pu.net) #
 
 33号铺是一个简单好用的淘宝客瀑布流发布、管理系统。demo：[33号铺](http://33pu.net)
 
@@ -55,6 +55,9 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 
 
 ## 联系 ##
+
+遇到问题先看[FAQ](https://github.com/yuguo/33pu/wiki/FAQ)，再更新到最新版看看问题有无解决，如果还有问题请联系Yuguo。
+
 代码还在不断完善中，有任何意见和建议：
 
 - Email：fishguo321@gmail.com
