@@ -17,7 +17,7 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 ## 安装 ##
 1. 配置 `application/config/config.php` 为你的站点url，配置 `application/config/site_info.php` 中的站点名称、appkey、secret还有最重要的taobaoke pid。
 2. 配置 `application/database` 中的 `username`，`password`，`database`
-3. 配置 `.htaccess` 中的RewriteBase为程序锁在文件夹目录，比如`http://localhost/33pu/` 即为 `33pu` ，如果是在根目录比如 `http://localhost/` 即为 `/`。
+3. 如果使用**Apache服务器**，配置 `.htaccess` 中的RewriteBase为程序锁在文件夹目录，比如`http://localhost/33pu/` 即为 `33pu` ，如果是在根目录比如 `http://localhost/` 即为 `/`。（如果使用**Nginx服务器**，配置见最后说明）
 4. 访问 `站点url/login/install` ，输入管理员的email和密码
 5. 访问 `站点url/login` 登录
 6. 访问 `站点url/admin/cat` 新增你的站点的商品类别（类别会出现在首页tab中）
@@ -40,6 +40,19 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 - 后台UI基于[Bootstrap](http://twitter.github.com/bootstrap/)构建。
 - 整站的JS都是基于[jQuery](http://jquery.com/)构建。
 - 数据来源于[淘宝开放平台](http://open.taobao.com/index.htm)。
+
+## Nginx配置说明 ##
+
+<pre>location / {
+	index index.php;
+	if (-f $request_filename/index.php){
+	        rewrite (.*) $1/index.php;
+	}
+	if (!-f $request_filename){
+	        rewrite (.*) /index.php;
+	}
+}</pre>
+
 
 ## 联系 ##
 代码还在不断完善中，有任何意见和建议：

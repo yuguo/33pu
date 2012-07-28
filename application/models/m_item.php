@@ -115,7 +115,7 @@ class M_item extends CI_Model{
 
         if(preg_match("/jpg/i",$image_source_url)){
             $src_im = imagecreatefromjpeg($image_source_url);
-            if(!$src_im){
+            if($src_im){
                 throw new Exception("载入jpeg图片错误！");
             }
             return resizeImage($src_im,230,230,'images/',$image_new_name,'.jpg');
