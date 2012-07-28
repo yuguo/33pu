@@ -101,7 +101,7 @@ function puPrintItem($resp){
 				var $img_url = $(this).attr('src');
                 var $item = {};
 				$('#pop-pictures .modal-body').html('<p>正在保存图片……</p>');
-
+				var dtd = $.Deferred(); // 新建一个deferred对象
 				$.ajax({
                     type: "POST",
                     url:'<?php echo site_url("admin/saveimage/") ?>',
@@ -109,44 +109,39 @@ function puPrintItem($resp){
                                 img_source_url: $img_url,
                                 img_new_name: global_itemid
                             })
-                }).done(function(data){
-                        var dtd = $.Deferred(); // 新建一个deferred对象
-                        if(data == 0){
-                            alert("图片保存失败！");
-                            dtd.reject();
-                            return dtd;
-                        }
+                })
+				.fail(function(data){
+					alert("保存失败！"+data.statusText);
+					$('.modal').modal('hide');
+				})
+				.done(function(data){
+					$('#pop-pictures .modal-body').append('<p>图片保存成功……</p>');
+					$item.img_url = data;
+					$item.sellernick = global_sellernick;
+					$item.title = global_title;
+					$item.price = global_price;
+					$item.click_url = global_clickurl;
+					$item.cid = global_cid;
+				})
+				.done(function(){
+					$('#pop-pictures .modal-body').append('<p>保存条目……</p>');
+					console.log($item);
+					$.post('<?php echo site_url("admin/setitem/")?>',
+						   { img_url: $item.img_url,
+							title: $item.title,
+							cid: $item.cid,
+							sellernick: $item.sellernick,
+							click_url: $item.click_url,
+							price: $item.price
+						   },
+						   function(data) {
+							 $('#pop-pictures .modal-body').html('成功！');
+							 $('.modal').modal('hide');
+						   });
 
-                        $('#pop-pictures .modal-body').append('<p>图片保存成功……</p>');
-                        $item.img_url = data;
-                        $item.sellernick = global_sellernick;
-                        $item.title = global_title;
-                        $item.price = global_price;
-                        $item.click_url = global_clickurl;
-                        $item.cid = global_cid;
-                    })
-                    .done(function(){
-                        $('#pop-pictures .modal-body').append('<p>保存条目……</p>');
-                        console.log($item);
-                        $.post('<?php echo site_url("admin/setitem/")?>',
-                               { img_url: $item.img_url,
-                                title: $item.title,
-                                cid: $item.cid,
-                                sellernick: $item.sellernick,
-                                click_url: $item.click_url,
-                                price: $item.price
-                               },
-                               function(data) {
-                                 $('#pop-pictures .modal-body').html('成功！');
-                                 $('.modal').modal('hide');
-                               });
+					event.preventDefault();
+				});
 
-                               event.preventDefault();
-                    })
-                    .fail(function(){
-                        alert("保存条目失败！");
-                    }
-                );
 			}
 			);
 

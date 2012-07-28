@@ -226,8 +226,9 @@ class Admin extends CI_Controller {
         }
         catch(Exception $e)
           {
-          //输出0表示保存图片失败，js端处理
-          echo 0;
+               //输出500错误表示保存图片失败
+              header('HTTP/1.1 500 '.$e->getMessage());
+	          die();
           }
 	}
 
