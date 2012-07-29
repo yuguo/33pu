@@ -59,9 +59,9 @@ if(!empty($cat_slug)){
 
 <div id="wrapper">
 
-	<? if($query->num_rows()>0){ ?>
+	<?php if($query->num_rows()>0){ ?>
 	<div class="goods-all transitions-enabled masonry">
-	<? foreach ($query->result() as $array):
+	<?php foreach ($query->result() as $array):
 	//条目
 		?>
 
@@ -77,7 +77,7 @@ if(!empty($cat_slug)){
 				</div></div>
 			</div>
 		</article>
-	<?endforeach;?>
+	<?php endforeach;?>
 	</div>
         <div class="pagenav_wrapper">
             <div class="pagenav">
@@ -85,7 +85,7 @@ if(!empty($cat_slug)){
             	</div>
         </div><!-- .pagenav_wrapper -->
 
-    	<? } ?>
+    	<?php } ?>
 </div>
 
 <footer id="ft" class="main-footer" role="contentinfo">
@@ -94,8 +94,7 @@ if(!empty($cat_slug)){
 
 
 <script type="text/javascript">
-var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
-document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F247001c57f7d57d224b4e6bd2f1a86e5' type='text/javascript'%3E%3C/script%3E"));
+PUT YOUR Baidu or Google analytics code
 </script>
 
 </body>
