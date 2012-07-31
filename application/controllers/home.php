@@ -10,26 +10,34 @@ class Home extends CI_Controller {
 		$this->load->model('M_cat');
 	}
 
-	/**
-	 * 首页控制器
-	 *
-	 * @para integer 查询数据库时设定的偏移数量
-	 */
-	public function index($offset = 0)
-	{
+    /**
+     * 首页控制器
+     *
+     */
+    public function index(){
+        $this->page();
+    }
 
+    /**
+     * 翻页控制器
+     *
+     * @param integer $page 第几页
+     */
+	public function page($page = 1)
+	{
 		$this->config->load('site_info');
         //$this->output->cache(10);
 
 		$limit=40;
 		//每页显示数目
 
-		$config['base_url'] = site_url('/home/index');
+		$config['base_url'] = site_url('/home/page');
 		//site_url可以防止换域名代码错误。
 
 		$config['total_rows'] = $this->M_item->count_items();
 		//这是模型里面的方法，获得总数。
-
+        $config['use_page_numbers'] = TRUE;
+        $config['first_url'] = site_url('/home');
 		$config['per_page'] = $limit;
 		$config['first_link'] = '首页';
 		$config['last_link'] = '尾页';
@@ -40,7 +48,7 @@ class Home extends CI_Controller {
 		//初始化配置
 
 		$data['limit']=$limit;
-		$data['offset']=$offset;
+		$data['offset']=($page-1)*$limit;
 		$data['pagination']=$this->pagination->create_links();
 		//通过数组传递参数
 		//以上是重点

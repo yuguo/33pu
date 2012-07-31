@@ -101,7 +101,6 @@ function puPrintItem($resp){
 				var $img_url = $(this).attr('src');
                 var $item = {};
 				$('#pop-pictures .modal-body').html('<p>正在保存图片……</p>');
-				var dtd = $.Deferred(); // 新建一个deferred对象
 				$.ajax({
                     type: "POST",
                     url:'<?php echo site_url("admin/saveimage/") ?>',
