@@ -14,7 +14,7 @@ class Admin extends CI_Controller {
 			parent::__construct();
 			$this->load->model('M_item');
 			$this->load->model('M_cat');
-			$this->load->view('admin/include_login');
+			$this->load->view('admin/include_login'); //检查cookie
 		}
 
 	/**
