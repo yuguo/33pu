@@ -7,8 +7,14 @@
  */
 
 
+if(!$this->input->cookie('user_email', TRUE)||!$this->input->cookie('user_password', TRUE)){
+    Header("HTTP/1.1 303 See Other");
+       Header("Location: ".site_url('login'));
+       exit;
+}
 $query = $this->db->get_where('admin', array('user_email' => $this->input->cookie('user_email', TRUE),'user_password' =>$this->input->cookie('user_password', TRUE)));
 $result = $query->result();
+
 if(empty($result)){
     //跳转
     Header("HTTP/1.1 303 See Other");

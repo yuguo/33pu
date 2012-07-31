@@ -4,3 +4,5 @@
 */cache/*
 */cache/!index.html
 /images
+.idea
+application/config/*.php
