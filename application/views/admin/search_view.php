@@ -70,7 +70,7 @@ function puPrintItem($resp){
 	var global_clickurl,global_title,global_price,global_nick,global_cid;
 	//搜索结果中的条目点击
 	$('#search-list li a').click(
-			function(){
+			function(event){
 				event.preventDefault();
 
 
@@ -97,7 +97,7 @@ function puPrintItem($resp){
 
 	//弹出窗口中的图片再点击
 	$('#pop-pictures li img').live('click',
-			function(){
+			function(event){
 				var $img_url = $(this).attr('src');
                 var $item = {};
 				$('#pop-pictures .modal-body').html('<p>正在保存图片……</p>');
