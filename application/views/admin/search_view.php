@@ -68,64 +68,25 @@ function puPrintItem($resp){
 <script type="text/javascript">
 (function($) {
 	var global_clickurl,global_title,global_price,global_nick,global_cid;
-	//搜索结果中的条目点击
+		//搜索结果中的条目点击
 	$('#search-list li a').click(
-			function(){
+			function(event){
 				event.preventDefault();
 
 
 				//设置一些当前选中条目的公共信息
-				global_clickurl = $(this).attr('href');
-				global_title = htmlEncode($(this).attr('title'));
-				global_price = $(this).data('price');
-				global_sellernick = $(this).data('sellernick');
 				global_commission = $(this).data('commission');
 				global_itemid = $(this).data('taobaoke_id');
 
-				$('#pop-pictures').modal();
+				$item = {};
+				$item.img_url = $(this).find('img').attr('src');
+				$item.sellernick = $(this).data('sellernick');
+				$item.title = htmlEncode($(this).attr('title'));
+				$item.price = $(this).data('price');
+				$item.click_url = $(this).attr('href');
+				$item.cid = global_cid;
 
-				$('#pop-pictures .modal-body').html('等下……');
-				$.get('<?php echo site_url("admin/getiteminfo")?>',{item_id:global_itemid},
-						function(data) {
-							$('#pop-pictures .modal-body').html('<ul></ul>');
-							$.each(data['imgs'],function(k,v){
-								$('<li><img src="'+v+'"></li>').insertAfter('#pop-pictures .modal-body ul');
-							});
-						},'json');
-		}
-	);
-
-	//弹出窗口中的图片再点击
-	$('#pop-pictures li img').live('click',
-			function(){
-				var $img_url = $(this).attr('src');
-                var $item = {};
-				$('#pop-pictures .modal-body').html('<p>正在保存图片……</p>');
-				$.ajax({
-                    type: "POST",
-                    url:'<?php echo site_url("admin/saveimage/") ?>',
-                    data:({
-                                img_source_url: $img_url,
-                                img_new_name: global_itemid
-                            })
-                })
-				.fail(function(data){
-					alert("保存失败！"+data.statusText);
-					$('.modal').modal('hide');
-				})
-				.done(function(data){
-					$('#pop-pictures .modal-body').append('<p>图片保存成功……</p>');
-					$item.img_url = data;
-					$item.sellernick = global_sellernick;
-					$item.title = global_title;
-					$item.price = global_price;
-					$item.click_url = global_clickurl;
-					$item.cid = global_cid;
-				})
-				.done(function(){
-					$('#pop-pictures .modal-body').append('<p>保存条目……</p>');
-					console.log($item);
-					$.post('<?php echo site_url("admin/setitem/")?>',
+				$.post('<?php echo site_url("admin/setitem/")?>',
 						   { img_url: $item.img_url,
 							title: $item.title,
 							cid: $item.cid,
@@ -134,15 +95,17 @@ function puPrintItem($resp){
 							price: $item.price
 						   },
 						   function(data) {
-							 $('#pop-pictures .modal-body').html('成功！');
-							 $('.modal').modal('hide');
+							 alert('添加成功！');
 						   });
 
 					event.preventDefault();
-				});
+				
 
-			}
-			);
+				
+		}
+	);
+
+	
 
 	function htmlEncode(value){
 	  return $('<div/>').text(value).html();

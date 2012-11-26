@@ -1,10 +1,16 @@
 <?php
 
 class M_cat extends CI_Model{
+        
+        var $cat_table = '';
+        var $item_table = '';
+        
 
 	function __construct()
 	{
 		parent::__construct();
+                $this->cat_table = $this->db->dbprefix('cat');
+                $this->item_table = $this->db->dbprefix('item');               
 	}
 
 
@@ -47,7 +53,9 @@ class M_cat extends CI_Model{
      * @return 查询结果
      */
 	function query_cats(){
-		$sql = "SELECT cat.cat_name,COUNT(item.id) as count, SUM(item.click_count) as sum FROM item,cat WHERE item.cid = cat.cat_id GROUP BY item.cid ORDER BY count DESC";
+                $cat_table = $this->cat_table;
+                $item_table = $this->item_table;
+		$sql = "SELECT $cat_table.cat_name,COUNT($item_table.id) as count, SUM($item_table.click_count) as sum FROM $item_table,$cat_table WHERE $item_table.cid = $cat_table.cat_id GROUP BY $item_table.cid ORDER BY count DESC";
 		$query = $this->db->query($sql);
 		return $query;
 	}
@@ -59,13 +67,15 @@ class M_cat extends CI_Model{
 	 * @return integer 类别点击总数
 	 */
 	function click_count_by_cid($cid=0){
+                $cat_table = $this->cat_table;
+                $item_table = $this->item_table;
 		if($cid == 0){
-			$sql = "SELECT SUM(click_count) as sum FROM item";
+			$sql = "SELECT SUM(click_count) as sum FROM $item_table";
 			$query = $this->db->query($sql);
 			$row = $query->row();
 			  return $row->sum;
 		}else {
-			$sql = "SELECT SUM(click_count) as sum FROM item WHERE item.cid ='".$cid."'";
+			$sql = "SELECT SUM(click_count) as sum FROM item WHERE $item_table.cid ='".$cid."'";
 			$query = $this->db->query($sql);
 			if ($query->num_rows() > 0)
 			{
