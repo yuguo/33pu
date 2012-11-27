@@ -19,7 +19,8 @@ if($cat_saved)
 	                echo '<td>'.$index.'</td>';
 	                echo '<td><input type="text" class="input-small cat_name" value="'.$row->cat_name.'"></td>';
 	                echo '<td><input type="text" class="input-small cat_slug" value="'.$row->cat_slug.'"></td>';
-	                echo '<td><input type="text" class="input-small cid" value="'.$row->cat_id.'"></td>';
+                    echo '<td><input type="text" class="input-small cid" value="'.$row->cat_id.'"></td>';
+	                echo '<td><a href="'.site_url('admin/catdelete/'.$row->cat_id).'">×</a></td>';
 	                echo '</tr>';
 	                $index++;
 				}

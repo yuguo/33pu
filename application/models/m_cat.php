@@ -47,6 +47,10 @@ class M_cat extends CI_Model{
         }
 	}
 
+	function delete_cat($cat_id){
+		$this->db->delete($this->cat_table,array('cat_id'=>$cat_id));
+	}
+
     /**
      * 查询每个类别对应的点击
      *

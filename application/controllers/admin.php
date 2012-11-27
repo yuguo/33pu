@@ -168,6 +168,18 @@ class Admin extends CI_Controller {
 	}
 
 	/**
+	 * 删除类目
+	 *
+	 */
+	public function catdelete($cat_id){
+		$this->M_cat->delete_cat($cat_id);
+        $data['cat'] = $this->M_cat->get_all_cat();
+		$data['cat_saved'] = true;
+        $this->load->view('admin/include_header');
+        $this->load->view('admin/cat_view',$data);
+	}
+
+	/**
 	 * 删除条目
 	 */
 	public function delete_item(){
