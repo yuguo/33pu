@@ -155,6 +155,19 @@ class M_item extends CI_Model{
     }
 
     /**
+     * 根据关键词搜索条目
+     *
+     * @param string $keyword 搜索关键词
+     * @return 
+     */
+    function searchItem($keyword){
+
+		$sql = "SELECT * FROM item WHERE title LIKE '%".$keyword."%'";
+		$query = $this->db->query($sql);
+		return $query;
+    }
+
+    /**
      * 查询每个店铺对应的点击
      *
      * @return 查询结果

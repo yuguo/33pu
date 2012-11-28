@@ -80,6 +80,35 @@ class Home extends CI_Controller {
 		exit;
 	}
 
+	/**
+	 * 搜索结果页
+	 *
+	 */
+	public function search(){
+        $this->load->model('M_taobaoapi');
+        $data['cat'] = $this->M_cat->get_all_cat();
+
+         //获取搜索关键词
+        $keyword = $_GET['keyword'];
+
+        /* cid是类别id */
+        $cid = '0';
+        if(!empty($_GET['cat_select'])){
+            $cid = $_GET['cat_select'];
+        }
+
+
+        $data['ad_resp'] = $this->M_item->searchItem($keyword);
+        $data['resp'] = $this->M_taobaoapi->searchItem($keyword, $cid);
+
+        $data['keyword'] =  $_GET['keyword'];
+        
+		//站点信息
+		$data['site_name'] = $this->config->item('site_name');
+
+		$this->load->view('search_view',$data);
+	}
+
 
 
 }
