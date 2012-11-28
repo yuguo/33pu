@@ -4,7 +4,7 @@
 -------------------------------------------------------------- */
 #branding {}
 /* logo */
-#site-title {padding:10px 0;width: 960px;margin: 0 auto;position:relative;}
+#site-title {padding:10px 0;height:80px;width: 960px;margin: 0 auto;position:relative;}
 #site-title .logo {display:inline-block;*display:inline;zoom:1;line-height:900px;overflow:hidden;font-size:0;
 	background-image: url(img/logo.png);height:56px;width:105px;position:relative;}
 #site-title .right {position:absolute;top:10px;right:10px;}
@@ -23,6 +23,9 @@
 }
 .main_nav .current-menu-item a {border-bottom:3px solid #b00;}
 .main_nav a:hover {border-bottom:3px solid #b00;}
+
+#branding #site-op {position: absolute;top:20px;right:0;}
+#branding #site-op .span2 {width:200px;}
 
 /* =画报流
 -------------------------------------------------------------- */

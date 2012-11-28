@@ -27,9 +27,14 @@ if(!empty($cat_slug)){
         <h1>
             <a href="<?php echo site_url();?>" title="<?php echo $site_name;?>" rel="home" class="logo"><?php echo $site_name;?></a>
         </h1>
-			<div id="site-op" class="hide">
-				<a href="<?php echo site_url('login/oauth_qq')?>" title="使用QQ帐号登录33号铺" class="qq-login">QQ登录</a>
+		<div id="site-op">
+			<form action="<?php echo site_url('search');?>">
+			<div class="input-append">
+			  <input class="span2" id="appendedInputButton" type="text" name="keyword">
+			  <input class="btn" type="submit" value="搜索">
 			</div>
+		</form>
+		</div>
     </div>
 
 </header>
