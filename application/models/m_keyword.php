@@ -7,20 +7,37 @@ class M_keyword extends CI_Model{
 	function __construct()
 	{
 		parent::__construct();
-                $this->keyword_table = $this->db->dbprefix('keyword');
+        $this->keyword_table = $this->db->dbprefix('keyword');
 	}
 
-	function get_all_keyword(){
-		$query = $this->db->get('keyword');
+	function get_all_keyword($limit_number=100){
+		$this->db->limit($limit_number);
+		$this->db->order_by("keyword_click", "desc"); 
+		$query = $this->db->get($this->keyword_table);
 		return $query;
 	}
 
 	function add_new_keyword($keyword){
 		$data = array(
            'keyword_name' => $keyword ,
-           'keyword_click' => 0
+           'keyword_click' => 1
         );
 
-		$this->db->insert('keyword', $data); 
+		$this->db->insert($this->keyword_table, $data); 
+	}
+
+	function add_keyword_click($keyword){
+		$sql_query = "UPDATE ".$this->keyword_table." SET keyword_click = keyword_click+1 WHERE keyword_name ='".$keyword."'";
+		$this->db->query($sql_query);
+		return $keyword;
+	}
+
+	function add_keyword_if_not_exist($keyword){
+		$query = $this->db->get_where($this->keyword_table,array('keyword_name'=>$keyword));
+		if($query->num_rows() == 0){
+			$this->add_new_keyword($keyword);
+		}else{
+			$this->add_keyword_click($keyword);
+		}
 	}
 }

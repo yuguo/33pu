@@ -90,10 +90,13 @@ class Home extends CI_Controller {
 	 */
 	public function search(){
         $this->load->model('M_taobaoapi');
-        $data['cat'] = $this->M_cat->get_all_cat();
+        $data['cat'] = $this->M_cat->get_all_cat(5);
 
          //获取搜索关键词
         $keyword = $_GET['keyword'];
+
+        $this->M_keyword->add_keyword_if_not_exist($keyword);
+        $data['ad_resp'] = $this->M_item->searchItem($keyword);
 
         /* cid是类别id */
         $cid = '0';
@@ -103,8 +106,7 @@ class Home extends CI_Controller {
 
 
 		//关键词列表，这个在后台配置
-		$data['keyword_list'] = $this->M_keyword->get_all_keyword();
-        $data['ad_resp'] = $this->M_item->searchItem($keyword);
+		$data['keyword_list'] = $this->M_keyword->get_all_keyword(5);
         $data['resp'] = $this->M_taobaoapi->searchItem($keyword, $cid);
 
         $data['keyword'] =  $_GET['keyword'];
