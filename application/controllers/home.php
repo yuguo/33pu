@@ -55,7 +55,7 @@ class Home extends CI_Controller {
 		//以上是重点
 
 		//关键词列表，这个在后台配置
-		$data['keyword_list'] = $this->M_keyword->get_all_keyword();
+		$data['keyword_list'] = $this->M_keyword->get_all_keyword(5);
 
 
 		$query = $this->M_cat->get_all_cat();
@@ -90,7 +90,7 @@ class Home extends CI_Controller {
 	 */
 	public function search(){
         $this->load->model('M_taobaoapi');
-        $data['cat'] = $this->M_cat->get_all_cat(5);
+        $data['cat'] = $this->M_cat->get_all_cat();
 
          //获取搜索关键词
         $keyword = $_GET['keyword'];
