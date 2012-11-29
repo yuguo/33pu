@@ -102,6 +102,8 @@ class Home extends CI_Controller {
         }
 
 
+		//关键词列表，这个在后台配置
+		$data['keyword_list'] = $this->M_keyword->get_all_keyword();
         $data['ad_resp'] = $this->M_item->searchItem($keyword);
         $data['resp'] = $this->M_taobaoapi->searchItem($keyword, $cid);
 
