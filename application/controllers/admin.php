@@ -59,10 +59,27 @@ class Admin extends CI_Controller {
         }
 
         $data['resp'] = $this->M_taobaoapi->searchItem($keyword, $cid);
-        $data['keyword'] =  $_GET['keyword'];
+        $data['keyword'] =  $keyword;
 
 		$this->load->view('admin/include_header');
 		$this->load->view('admin/search_view',$data);
+	}
+
+	/**
+	 * 关键词配置页
+	 *
+	 *
+	 */
+	public function keyword(){
+		$this->load->model('M_keyword');
+		if(!empty($_POST['add_keyword'])){
+			$this->M_keyword->add_new_keyword($_POST['add_keyword']);
+			$data['alert_info'] = '增加关键词成功！';
+
+		}
+		$data['keyword_list'] = $this->M_keyword->get_all_keyword();
+		$this->load->view('admin/include_header');
+		$this->load->view('admin/keyword_view',$data);
 	}
 
 	/**
@@ -214,7 +231,6 @@ class Admin extends CI_Controller {
         $item_info_array['imgs'] = $img_url_array;
 
         echo json_encode($item_info_array);
-
 	}
 
 	/**
@@ -225,24 +241,6 @@ class Admin extends CI_Controller {
 		$data['state'] = $this->M_item->set_item();
 	}
 
-	/**
-	 * 保存图片
-	 *
-	 * 抓取远程图片，保存到本地，尺寸为230px
-	 */
-	public function saveimage(){
-        $image_source_url = $_POST['img_source_url'];
-      	$image_new_name = $_POST['img_new_name'];
-        try{
-		 $this->M_item->save_image($image_source_url,$image_new_name);
-        }
-        catch(Exception $e)
-          {
-               //输出500错误表示保存图片失败
-              header('HTTP/1.1 500 '.$e->getMessage());
-	          die();
-          }
-	}
 
     /**
      * get_item

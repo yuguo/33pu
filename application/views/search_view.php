@@ -18,10 +18,18 @@
         </h1>
 		<div id="site-op">
 			<form action="<?php echo site_url('home/search');?>">
-			<div class="input-append">
-			  <input class="span2" id="appendedInputButton" type="text" name="keyword">
-			  <input class="btn" type="submit" value="搜索">
-			</div>
+				<div class="input-append">
+				  <input class="span2" id="appendedInputButton" type="text" name="keyword">
+				  <input class="btn" type="submit" value="搜索">
+				</div>
+				<div class="keyword-list">
+				<?php
+      			   foreach($keyword_list->result() as $row){
+	                echo '<a href="'.site_url('home/search?keyword='.$row->keyword_name).'">'.$row->keyword_name.'</a>&nbsp;&nbsp;';
+      				}
+	  			 ?>
+				</div>
+			</form>
 		</form>
 		</div>
     </div>

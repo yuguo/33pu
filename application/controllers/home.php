@@ -6,6 +6,7 @@ class Home extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_item');
+		$this->load->model('M_keyword');
 		$this->load->library('pagination');
 		$this->load->model('M_cat');
 	}
@@ -53,6 +54,9 @@ class Home extends CI_Controller {
 		//通过数组传递参数
 		//以上是重点
 
+		//关键词列表，这个在后台配置
+		$data['keyword_list'] = $this->M_keyword->get_all_keyword();
+
 
 		$query = $this->M_cat->get_all_cat();
 		$data['cat'] = $query;
@@ -60,7 +64,7 @@ class Home extends CI_Controller {
 		//站点信息
 		$data['site_name'] = $this->config->item('site_name');
 
-		$this->load->view('home',$data);
+		$this->load->view('home_view',$data);
 	}
 
 	/**

@@ -29,7 +29,7 @@ body {padding-top:40px;}
 }
 
 /* 首页 */
-#index_search {width:340px;margin:200px auto 10px;position:relative;padding:25px 30px 10px 140px;}
+#index_search {width:360px;margin:200px auto 10px;position:relative;padding:25px 30px 10px 140px;}
 #index_search .logo {position:absolute;left:30px;top:10px;}
 #manage_links {position:absolute;top:20px;right:20px;}
 

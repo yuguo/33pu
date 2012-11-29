@@ -1,13 +1,3 @@
-<style>
-	.modal-header {display:none}
-	.modal-footer {display:none}
-	.modal-body {position:relative;min-height:250px;}
-	.modal-body #img_thumb {position:absolute;left:15px;top:15px;}
-	.modal-body .ml {margin-left:250px;}
-</style>
-
-
-
 <div id="search_input">
     <a href="<?php echo site_url('admin')?>" class="logo"></a>
     <form id="myForm" action="<?php echo site_url('admin/search')?>" method="get">
@@ -48,23 +38,9 @@ function puPrintItem($resp){
 }
 ?>
 
-<div id="pop-pictures" class="modal hide">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">×</button>
-              <h3></h3>
-            </div>
-            <div class="modal-body">
 
-            </div>
-            <div class="modal-footer">
-             <a href="" class="btn btn-primary"
-		              id="btn-publish">发布条目</a>
-            </div>
-          </div>
 
 <script type='text/javascript' src='<?php echo base_url()?>assets/js/jquery.js'></script>
-<script type='text/javascript' src='<?php echo base_url()?>assets/js/bootstrap.min.js'></script>
-<script type='text/javascript' src='<?php echo base_url()?>assets/js/bootstrap-modal.js'></script>
 <script type="text/javascript">
 (function($) {
 	var global_clickurl,global_title,global_price,global_nick,global_cid;
