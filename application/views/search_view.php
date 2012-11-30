@@ -36,33 +36,39 @@
 
 </header>
 
-<!-- 打印阿里妈妈搜索结果 -->
-<div id="wrapper">
 
-	<?php if($resp->total_results != 0){ ?>
-		<div class="goods-all transitions-enabled masonry">
-		<?php foreach($resp->taobaoke_items->taobaoke_item as $taobaoke_item):
-		//条目
-			?>
+<div class="container">
+<?php 
+if($resp->num_rows() == 0){
+		echo '你搜索的“'.$keyword.'”没有找到本站条目。<a href="">在淘宝搜索更多'.$keyword.'。</a>';
+	}else if($resp->num_rows()>0){ ?>
+	<div class="goods-all transitions-enabled masonry">
+	<?php foreach ($resp->result() as $array):
+	//条目
+		?>
 
-			<article class="goods">
-				<div class="entry-content">
-				<div class="goods-pic">
-					<a href='<?php echo $taobaoke_item->click_url ?>' data-taobaoke_id='<?php echo $taobaoke_item->num_iid ?>' title='<?php echo strip_tags($taobaoke_item->title)?>' data-price='<?php echo $taobaoke_item->price?>' data-commission='<?php echo $taobaoke_item->commission ?>' data-sellernick='<?php echo $taobaoke_item->nick; ?>'>
-						<img src="<?php echo $taobaoke_item->pic_url?>" alt="<?php echo $taobaoke_item->title?>"/>
-					</a>
-				</div>
-				<div class="op"><div class="desc"><?php echo $taobaoke_item->volume ?>件/30天</span>   / <strong>RMB<?php echo $taobaoke_item->price?></strong></div>
-					<div class="buttonline">
-						<a href="<?php echo $taobaoke_item->click_url ?>" title="去购买" class="btn btn-success" target="_blank">去购买</a>
-					</div></div>
-				</div>
-			</article>
-		<?php endforeach;?>
-		</div>
-    <?php } ?>
+		<article class="goods">
+			<div class="entry-content">
+			<div class="goods-pic">
+				<img src="<?php echo $array->img_url ?>" class="" alt="" title="<?php echo $array->title ?>">
+
+			</div>
+				<div class="op"><div class="desc"><?php echo $array->sellernick ?>   / <strong>RMB<?php echo $array->price ?></strong></div>
+				<div class="buttonline">
+					<a href="<?php echo site_url('home/redirect').'/'.$array->id ?>" title="去购买" class="btn btn-success" target="_blank">去购买</a>
+				</div></div>
+			</div>
+		</article>
+	<?php endforeach;?>
+	</div>
+    	<?php
+			echo '没有找到满意的结果？<a href="">在淘宝搜索更多'.$keyword.'。</a>';
+    	 } ?>
 </div>
 
+<footer id="ft" class="main-footer" role="contentinfo">
+		<p><a href="<?php echo site_url();?>" title="<?php echo $site_name;?>"><?php echo $site_name;?></a> ©   • Powered by <a href="https://github.com/yuguo/33pu" title="Powered by 33号铺, 一个开源的购物推荐系统">33号铺</a></p>
+</footer>
 
 
 

@@ -80,7 +80,7 @@ if(!empty($cat_slug)){
 		<article class="goods">
 			<div class="entry-content">
 			<div class="goods-pic">
-				<img src="<?php echo $array->img_url ?>" class="thumbnail" alt="" title="<?php echo $array->title ?>">
+				<img src="<?php echo $array->img_url ?>" class="" alt="" title="<?php echo $array->title ?>">
 
 			</div>
 				<div class="op"><div class="desc"><?php echo $array->sellernick ?>   / <strong>RMB<?php echo $array->price ?></strong></div>

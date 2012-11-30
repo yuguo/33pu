@@ -93,23 +93,16 @@ class Home extends CI_Controller {
         $data['cat'] = $this->M_cat->get_all_cat();
 
          //获取搜索关键词
-        $keyword = $_GET['keyword'];
+        $data['keyword'] = $_GET['keyword'];
 
-        $this->M_keyword->add_keyword_if_not_exist($keyword);
-        $data['ad_resp'] = $this->M_item->searchItem($keyword);
-
-        /* cid是类别id */
-        $cid = '0';
-        if(!empty($_GET['cat_select'])){
-            $cid = $_GET['cat_select'];
-        }
-
+        $this->M_keyword->add_keyword_if_not_exist($data['keyword']);
 
 		//关键词列表，这个在后台配置
 		$data['keyword_list'] = $this->M_keyword->get_all_keyword(5);
-        $data['resp'] = $this->M_taobaoapi->searchItem($keyword, $cid);
 
-        $data['keyword'] =  $_GET['keyword'];
+		//搜索条目的结果
+		$data['resp'] = $this->M_item->searchItem($data['keyword']);
+        
         
 		//站点信息
 		$data['site_name'] = $this->config->item('site_name');

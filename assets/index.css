@@ -30,7 +30,7 @@
 .goods-all {overflow:hidden;*zoom:1;}
 .goods {float:left;margin:0 0 30px;padding:5px;;width:230px;}
 .goods .goods-pic { position:relative;margin-bottom:5px;height:230px;width:230px;}
-.goods .goods-pic .thumbnail { display:block;text-decoration:none;position:absolute;bottom:0;
+.goods .goods-pic img { display:block;text-decoration:none;position:absolute;bottom:0;
 -webkit-transition: opacity 0.3s;
 -moz-transition: opacity 0.3s;
 transition: opacity 0.3s;}
