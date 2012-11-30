@@ -37,7 +37,7 @@
 </header>
 
 
-<div class="container">
+<div id="wrapper">
 <?php 
 if($resp->num_rows() == 0){
 		echo '你搜索的“'.$keyword.'”没有找到本站条目。<a href="">在淘宝搜索更多'.$keyword.'。</a>';
