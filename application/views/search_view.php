@@ -40,7 +40,14 @@
 <div id="wrapper">
 <?php 
 if($resp->num_rows() == 0){
-		echo '你搜索的“'.$keyword.'”没有找到本站条目。<a href="">在淘宝搜索更多'.$keyword.'。</a>';
+	//http://s8.taobao.com/search?cat=xx&sort=coefp&q=关键词&pid=mm_11111111_0_0&style=grid 
+
+	//cat                   类目号（后面加上该关键词相对应的类目编号，具体对应代码见附表）  
+	//sort=coefp    人气宝贝（加上这个内容使出现的搜索结果都是人气宝贝）  
+	//q                      关键词（后面直接添加上你想要搜的关键词中文）  
+	//style=grid      大图（加上这个代码可以使搜索的结果保证以大图展示）  
+		echo '你搜索的“'.$keyword.'”没有找到本站条目。<a href="http://s8.taobao.com/search?cat=&sort=coefp&q='.
+		$keyword.'&pid=mm_'.$pid.'_0_0&style=grid ">在淘宝搜索更多'.$keyword.'。</a>';
 	}else if($resp->num_rows()>0){ ?>
 	<div class="goods-all transitions-enabled masonry">
 	<?php foreach ($resp->result() as $array):
@@ -62,7 +69,8 @@ if($resp->num_rows() == 0){
 	<?php endforeach;?>
 	</div>
     	<?php
-			echo '没有找到满意的结果？<a href="">在淘宝搜索更多'.$keyword.'。</a>';
+			echo '没有找到满意的结果？<a href="http://s8.taobao.com/search?cat=&sort=coefp&q='.
+		$keyword.'&pid=mm_'.$pid.'_0_0&style=grid ">在淘宝搜索更多'.$keyword.'。</a>';
     	 } ?>
 </div>
 
