@@ -1,16 +1,16 @@
 <?php
 
 class M_cat extends CI_Model{
-        
+
         var $cat_table = '';
         var $item_table = '';
-        
+
 
 	function __construct()
 	{
 		parent::__construct();
                 $this->cat_table = $this->db->dbprefix('cat');
-                $this->item_table = $this->db->dbprefix('item');               
+                $this->item_table = $this->db->dbprefix('item');
 	}
 
 
@@ -23,14 +23,14 @@ class M_cat extends CI_Model{
                            'cat_name' =>$cat -> name,
                            'cat_slug' =>$cat -> name
                         );
-            $this->db->insert('cat', $data);
+            $this->db->insert($this->cat_table, $data);
         }
 
     }
 
 	function get_all_cat()
 	{
-		$query = $this->db->get('cat');
+		$query = $this->db->get($this->cat_table);
 		return $query;
 	}
 
@@ -43,7 +43,7 @@ class M_cat extends CI_Model{
             );
 
 			$this->db->where('cat_id', $cat -> id);
-			$this->db->update('cat', $data);
+			$this->db->update($this->cat_table, $data);
         }
 	}
 
