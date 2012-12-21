@@ -73,7 +73,7 @@
                     hiddenField.setAttribute("type", "hidden");
                     hiddenField.setAttribute("name", 'data');
                     hiddenField.setAttribute("value", data);
-                    alert(data);
+                    
                     form.appendChild(hiddenField);
 
                     document.body.appendChild(form);
