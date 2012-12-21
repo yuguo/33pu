@@ -24,7 +24,9 @@ class M_item extends CI_Model{
                'sellernick' => $_POST['sellernick']
             );
 
+	
 	$this->db->insert('item', $data);
+	return $data['title'];
 	}
 
 	function delete_item(){

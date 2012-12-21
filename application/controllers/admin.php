@@ -238,7 +238,7 @@ class Admin extends CI_Controller {
 	 *
 	 */
 	public function setitem(){
-		$data['state'] = $this->M_item->set_item();
+		echo $this->M_item->set_item();
 	}
 
 

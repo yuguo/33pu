@@ -61,6 +61,7 @@ function puPrintItem($resp){
 				$item.price = $(this).data('price');
 				$item.click_url = $(this).attr('href');
 				$item.cid = global_cid;
+				$errorMessage = '';
 
 				$.post('<?php echo site_url("admin/setitem/")?>',
 						   { img_url: $item.img_url,
@@ -71,7 +72,11 @@ function puPrintItem($resp){
 							price: $item.price
 						   },
 						   function(data) {
+						   	$errorMessage = data;
+						   }).success(function(){
 							 alert('添加成功！');
+						   }).error(function(){
+						   	alert('添加失败'+$errorMessage);
 						   });
 
 					event.preventDefault();
