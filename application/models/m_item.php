@@ -93,7 +93,7 @@ class M_item extends CI_Model{
 		if(empty($cat_slug)){
 			return $this->db->count_all_results('item');
 		}else{
-			$sql = "SELECT title,COUNT(id) AS count FROM ".$this->item_table.",".$this->cat_table." WHERE ".$this->item_table.".cid=".$this->cat_table.".cat_id AND ".$this->cat_table.".cat_slug='".$cat_slug."' ORDER BY id DESC";
+			$sql = "SELECT COUNT(id) AS count FROM ".$this->item_table.",".$this->cat_table." WHERE ".$this->item_table.".cid=".$this->cat_table.".cat_id AND ".$this->cat_table.".cat_slug='".$cat_slug."' ORDER BY id DESC";
 			$query=$this->db->query($sql);
 
 			if ($query->num_rows() > 0)
