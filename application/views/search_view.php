@@ -36,7 +36,6 @@
 
 </header>
 
-
 <div id="wrapper">
 <?php 
 if($resp->num_rows() == 0){
