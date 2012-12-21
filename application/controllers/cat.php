@@ -12,6 +12,7 @@ class Cat extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_item');
+		$this->load->model('M_keyword');
 		$this->load->library('pagination');
 	}
 
@@ -22,7 +23,7 @@ class Cat extends CI_Controller {
 	 *@offset integer 数据库偏移，如果是40则从40开始读取数据
 	 *
 	 */
-	public function index($cat_slug,$offset = 0)
+	public function index($cat_slug,$page = 1)
 	{
        //$this->output->cache(10);
 	   // todo 修改为页码数
@@ -47,10 +48,11 @@ class Cat extends CI_Controller {
 		$this->pagination->initialize($config);
 		//初始化配置
 
-		$data['limit']=$limit;
-		$data['offset']=$offset;
 		$data['pagination']=$this->pagination->create_links();
 		//通过数组传递参数
+
+		//关键词列表，这个在后台配置
+		$data['keyword_list'] = $this->M_keyword->get_all_keyword(5);
 
 
 		$this->load->model('M_cat');
@@ -58,10 +60,13 @@ class Cat extends CI_Controller {
 
 		$data['cat_slug'] = $cat_slug;
 
+		//所有条目数据
+		$data['items']=$this->M_item->get_all_item($limit,($page-1)*$limit,$cat_slug);
+
 		//站点信息
 		$data['site_name'] = $this->config->item('site_name');
 
-		$this->load->view('home',$data);
+		$this->load->view('home_view',$data);
 
 	}
 

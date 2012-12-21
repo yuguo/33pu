@@ -1,14 +1,3 @@
-<?php
-
-/*
-  * 判断url中是否包含slug
-  */
-if(!empty($cat_slug)){
-	$query=$this->M_item->get_all_item($limit,$offset,$cat_slug);
-}else{
-	$query=$this->M_item->get_all_item($limit,$offset);
-}
-?>
 <!DOCTYPE html>
 <html dir="ltr" lang="zh-CN">
 <head>
@@ -71,9 +60,9 @@ if(!empty($cat_slug)){
 
 <div id="wrapper">
 
-	<?php if($query->num_rows()>0){ ?>
+	<?php if($items->num_rows()>0){ ?>
 	<div class="goods-all transitions-enabled masonry">
-	<?php foreach ($query->result() as $array):
+	<?php foreach ($items->result() as $array):
 	//条目
 		?>
 

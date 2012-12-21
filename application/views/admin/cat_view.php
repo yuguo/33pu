@@ -3,6 +3,7 @@
     //如果是保存成功
     if($cat_saved)
     {
+
     	?>
     <div class="alert fade in">
     <strong>成功</strong> 类别信息已经成功保存！
@@ -35,11 +36,11 @@
     <?php
         $index = 1;
 		   foreach($cat->result() as $row){
-                echo '<tr>';
+                echo '<tr class="cat_row">';
                 echo '<td>'.$index.'</td>';
                 echo '<td><input type="text" class="input-small cat_name" value="'.$row->cat_name.'"></td>';
                 echo '<td><input type="text" class="input-small cat_slug" value="'.$row->cat_slug.'"></td>';
-                echo '<td>'.$row->cat_id.'</td>';
+                echo '<td class="cid" value="'.$row->cat_id.'">'.$row->cat_id.'</td>';
                 echo '<td><a href="'.site_url('admin/catdelete/'.$row->cat_id).'">×</a></td>';
                 echo '</tr>';
                 $index++;
@@ -57,7 +58,7 @@
     (function($) {
         $('#btn-save').click(function(){
             var data = new Array();
-            $('.row').each(function(index){
+            $('.cat_row').each(function(index){
                 data[index] = {id : $(this).find('.cid').attr('value'), name : $(this).find('.cat_name').attr('value'),slug : $(this).find('.cat_slug').attr('value')}
             });
                  data = JSON.stringify(data);
@@ -72,7 +73,7 @@
                     hiddenField.setAttribute("type", "hidden");
                     hiddenField.setAttribute("name", 'data');
                     hiddenField.setAttribute("value", data);
-
+                    alert(data);
                     form.appendChild(hiddenField);
 
                     document.body.appendChild(form);

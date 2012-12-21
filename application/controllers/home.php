@@ -48,8 +48,6 @@ class Home extends CI_Controller {
 		$this->pagination->initialize($config);
 		//初始化配置
 
-		$data['limit']=$limit;
-		$data['offset']=($page-1)*$limit;
 		$data['pagination']=$this->pagination->create_links();
 		//通过数组传递参数
 		//以上是重点
@@ -57,9 +55,11 @@ class Home extends CI_Controller {
 		//关键词列表，这个在后台配置
 		$data['keyword_list'] = $this->M_keyword->get_all_keyword(5);
 
+		//类别
+		$data['cat'] = $this->M_cat->get_all_cat();
 
-		$query = $this->M_cat->get_all_cat();
-		$data['cat'] = $query;
+		//条目数据
+		$data['items']=$this->M_item->get_all_item($limit,($page-1)*$limit);
 
 		//站点信息
 		$data['site_name'] = $this->config->item('site_name');
