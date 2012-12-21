@@ -6,3 +6,5 @@
 /images
 .idea
 .DS_Store
+*.sublime-project
+*.sublime-workspace
