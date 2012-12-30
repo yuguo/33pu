@@ -70,13 +70,21 @@ class Admin extends CI_Controller {
 	 *
 	 *
 	 */
-	public function keyword(){
 	public function keyword($operation = ''){
 		$this->load->model('M_keyword');
-		if(!empty($_POST['add_keyword'])){
-			$this->M_keyword->add_new_keyword($_POST['add_keyword']);
+
+		//新增关键词	
+		if(!empty($operation) && $operation == 'add'){
+			$keyword = $this->input->post('keyword');
+			$this->M_keyword->add_new_keyword($keyword);
 			$data['alert_info'] = '增加关键词成功！';
 
+		}
+		//删除关键词
+		else if(!empty($operation) && $operation == 'delete'){
+			$keyword = $this->input->post('keyword');
+			$this->M_keyword->delete_keyword($keyword);
+			$data['alert_info'] = '删除关键词'.$keyword.'成功！';
 		}
 		$data['keyword_list'] = $this->M_keyword->get_all_keyword();
 		$this->load->view('admin/include_header');
