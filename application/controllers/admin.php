@@ -71,6 +71,7 @@ class Admin extends CI_Controller {
 	 *
 	 */
 	public function keyword(){
+	public function keyword($operation = ''){
 		$this->load->model('M_keyword');
 		if(!empty($_POST['add_keyword'])){
 			$this->M_keyword->add_new_keyword($_POST['add_keyword']);

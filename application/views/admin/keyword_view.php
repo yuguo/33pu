@@ -36,7 +36,8 @@
             echo '<td>'.$index.'</td>';
             echo '<td>'.$row->keyword_name.'</td>';
             echo '<td>'.$row->keyword_click.'</td>';
-            echo '<td><a href="'.site_url('admin/keyworddelete/'.$row->keyword_name).'">×</a></td>';
+            echo '<td><a href="##" class="delete-keyword"
+             data-keywordname = "'.$row->keyword_name.'">×</a></td>';
             echo '</tr>';
             $index++;
   				}
@@ -51,8 +52,8 @@
       <h3>新增关键词</h3>
     </div>
         <div class="modal-body">
-          <form action="<?php echo site_url('admin/keyword')?>" method="post" class="form-inline">
-              <input type="text" placeholder="新增关键词…" name="add_keyword">
+          <form action="<?php echo site_url('admin/keyword/add')?>" method="post" class="form-inline">
+              <input type="text" placeholder="新增关键词…" name="keyword">
               <button type="submit" class="btn btn-primary">走你</button>
           <form>
         </div>
@@ -60,11 +61,38 @@
           <a href="#" class="btn">取消</a>
         </div>
   </div>
+  
 </div>
 
     <script type='text/javascript' src='<?php echo base_url()?>assets/js/jquery.js'></script>
+    <script type='text/javascript' >
+    jQuery.noConflict();
+    jQuery(document).ready(function($) {
+      //删除关键词
+      $('.delete-keyword').click(function(){
+          var r=confirm("你真的真的要删除吗？无法恢复！");
+          if (r==true)
+          {
+            var that = $(this);
+            var keywordname_to_be_delete = that.data('keywordname');
+            $.post('<?php echo site_url("admin/keyword/delete")?>',
+              {
+                keyword: keywordname_to_be_delete
+              },function(data){
+                console.log(data);
+                  if(data){ //如果删除成功
+                    that.parents('tr').fadeToggle();
+                  }
+                });
+          } else
+          {
+          }
+      });
+
+      event.preventDefault();
+      });
+    </script>
     <script type='text/javascript' src='<?php echo base_url()?>assets/js/bootstrap.min.js'></script>
-    
 
 </body>
 <html>

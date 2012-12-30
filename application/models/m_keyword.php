@@ -40,4 +40,7 @@ class M_keyword extends CI_Model{
 			$this->add_keyword_click($keyword);
 		}
 	}
+	function delete_keyword($keyword){
+		$query = $this->db->delete($this->keyword_table,array('keyword_name'=>$keyword));
+	}
 }
