@@ -14,8 +14,8 @@
 if(!empty($_POST['user_email'])){
 	$user_email = $_POST['user_email'];
 	$user_password = md5($_POST['user_password']);
-
-	$query = $this->db->insert('admin', array('user_email' => $user_email,'user_password' => $user_password));
+	$admin_table = $this->db->dbprefix('admin');
+	$query = $this->db->insert($admin_table, array('user_email' => $user_email,'user_password' => $user_password));
 
 
 	//  当验证通过后，启动 Session
