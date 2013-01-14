@@ -162,7 +162,7 @@ class M_login extends CI_Model{
 			'user_email' => array(
 				 'type' => 'VARCHAR',
 				 'constraint' => '128',
-		  )
+		  ),
 			'user_password' => array(
 				 'type' => 'VARCHAR',
 				 'constraint' => '128',
