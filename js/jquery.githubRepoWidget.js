@@ -1,5 +1,5 @@
 ;jQuery(document).ready(function($){
-	
+
 	var i = 0;
 
 	$('.github-widget').each(function(){
@@ -18,7 +18,7 @@
 				var repo = results.data;
 				var date = new Date(repo.pushed_at);
 				var pushed_at =  date.getFullYear() + '-' + (date.getMonth()+1) + '-' + date.getDate();
-				
+
 				var $widget = $(' \
 					<div class="github-box repo">  \
 					    <div class="github-box-title"> \
@@ -35,20 +35,12 @@
 					    </div> \
 					    <div class="github-box-download"> \
 					        <p class="updated">分支<strong>' + repo.default_branch + '</strong>最近更新于' + pushed_at + '</p> \
-					        <div style="margin: 0;"> \
-					          	<span style="vertical-align: bottom"> \
-						          	加入站长群:&nbsp; \
-						            230831981 \
-					            </span> \
-					        </div> \
-					        <a class="btn btn-primary btn-large" href="http://demo.33pu.net">DEMO</a> \
-					        <a class="btn btn-success btn-large" href="https://github.com/yuguo/33pu/archive/master.zip">下载</a> \
 					    </div> \
 					</div> \
 				');
 
 				$widget.appendTo($container);
-			} 
+			}
 		})
 
 	});

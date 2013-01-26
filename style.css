@@ -1,6 +1,6 @@
 
 html {
-  background: #f1f1f1 url('bg.jpg'); 
+  background: #f1f1f1 url('bg.jpg');
   }
 
 
@@ -46,7 +46,7 @@ p {
   margin: 0 0 1.2em; }
 
 article.container {
-  margin-top: 50px; 
+  margin-top: 50px;
   overflow:hidden
   }
 
@@ -133,11 +133,8 @@ footer {
   .home article.container {
     margin-top: 0; }
   .home .hero-unit {
-    background: none;
-    height: 320px;
-    padding: 105px 620px 0 0;
-    margin-right: -80px;
-    background: url(brand.png) 410px 100px no-repeat; }
+    height: 320px;position:relative;background: none;width:300px; }
+.home .hero-unit .home-view{position:absolute;left:400px;top:60px;width:500px;max-width:500px;}
     .home .hero-unit h1 {
       font-size: 38px;
       margin-top: 0.2em;
@@ -249,16 +246,7 @@ section {
           border-color: #ccc;
           box-shadow: inset 0 1px 2px #ccc;
           color: #000; }
-  section.beawesome {
-    text-align: center;
-    padding: 60px 0; }
-    section.beawesome .btn {
-      font-size: 20px;
-      padding: 12px 26px;
-      color: #fff;
-      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
-      font-weight: bold;
-      margin: 30px 0; }
+
   section.testimonials {
     padding: 70px 0 40px; }
     section.testimonials blockquote:before, section.testimonials blockquote:after {
@@ -583,3 +571,5 @@ section {
     opacity: .6;
     filter: Alpha(opacity=60);
 }
+
+ol li {font-size: 14px;line-height: 1.6;margin-bottom: 10px;}
