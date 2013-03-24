@@ -3,12 +3,11 @@
 <head>
   <meta charset="utf-8">
   <title>33号铺：简单好用的淘宝客发布系统</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="keywords" content="33号铺，33pu，淘客，淘宝客，开源">
   <meta name="description" content="33号铺是一个简单好用的淘宝客瀑布流发布、管理系统。">
 	<meta name="author" content="chekun">
   <!--[if lt IE 9]>
-    <script src="js/html5.js" type="text/javascript" language="javascript"></script>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript" language="javascript"></script>
   <![endif]-->
   <link rel="stylesheet" href="http://lib.sinaapp.com/js/bootstrap/latest/css/bootstrap.min.css" type="text/css">
   <link rel="stylesheet" href="style.css" type="text/css">
@@ -20,13 +19,10 @@
           <a href="http://33pu.net" class="brand"><img src="logo.png" alt="33号铺"></a>
           <div class="nav-collapse">
             <ul class="nav" style="float:right">
-              <li><a href="/#features">特性</a></li>
-              <li><a href="/#cases">案例展示</a></li>
-              <li><a href="/#installation">安装</a></li>
-              <li><a href="/#user_guide">手册</a></li>
-              <li><a href="/#contact">留言</a></li>
-              <li><a href="https://github.com/yuguo/33pu/wiki/_pages" target="_blank">Wiki</a></li>
-              <!-- <li><a href="http://codeigniter.org.cn/forums/forum-dilicms-1.html" target="_blank">社区</a></li> -->
+              <li><a href="#features">特性</a></li>
+              <li><a href="#installation">安装</a></li>
+              <li><a href="#faq">FAQ</a></li>
+              <li><a href="#contact">留言</a></li>
             </ul>
           </div>
         </div>
@@ -37,7 +33,7 @@
   <article class="container">
 
       <header class="hero-unit">
-        <h1>什么是33号铺?</h1>
+        <h1 id="feature">什么是33号铺?</h1>
         <p class="intro">33号铺的设计目标是，做一个体验最好的导购系统。</p>
         <div class="github-widget" data-repo="yuguo/33pu" data-lastest-version="1.0 Final" style="margin-bottom:20px;"></div>
 
@@ -51,7 +47,7 @@
       </header>
 
       <section class="row features">
-            <a name="#features" id="features" >&nbsp;</a>
+            <a id="features" >&nbsp;</a>
             <h2>33号铺 特性</h2>
             <p class="intro">轻量 易用 快速</p>
 
@@ -105,9 +101,9 @@
 
       <section class="row">
           <a name="#installation" id="installation" >&nbsp;</a>
-          <h2>开始使用DiliCMS吧!</h2>
+          <h2>开始使用33号铺吧!</h2>
 	      <p style="text-align:center;"><a href="https://github.com/yuguo/33pu/" target="_blank" class="btn btn-green btn-large">访问项目托管</a>&nbsp;&nbsp;
-	                <a href="https://github.com/yuguo/33pu/archive/master.zip" onclick="_hmt.push(['_trackEvent', 'software', 'download', 'dilicms']);" class="btn btn-primary btn-large">立即下载使用</a></p>
+	                <a href="https://github.com/yuguo/33pu/archive/master.zip" class="btn btn-primary btn-large">立即下载使用</a></p>
 
           <div class="row">
 	          <div class="span1">
@@ -173,33 +169,46 @@ location / {
 
 
       <hr />
-
+      
       <section class="row">
-        <a name="#contact" id="contact">&nbsp;</a>
-        <h2>给DiliCMS留言</h2>
-        <p class="intro"></p>
-        <div style="width: 900px; margin: 0 auto;">
-          <!-- Duoshuo Comment BEGIN -->
-          <div class="ds-thread"></div>
-          <script type="text/javascript">
-            var duoshuoQuery = {short_name:"dilicms"};
-            (function() {
-              var ds = document.createElement('script');
-              ds.type = 'text/javascript';ds.async = true;
-              ds.src = 'http://static.duoshuo.com/embed.js';
-              ds.charset = 'UTF-8';
-              (document.getElementsByTagName('head')[0]
-              || document.getElementsByTagName('body')[0]).appendChild(ds);
-            })();
-          </script>
-          <!-- Duoshuo Comment END -->
+        <h2 id="faq">FAQ</h2>
+        <div class="span1"></div>
+        <div class="span11">
+          <p class="question">问题？</p>
+          <p class="answer">答案</p>
         </div>
+      </section>
+      
+      <hr/>
+      
+      <section class="row">
+        <div class="span1"></div>
+        
+        <div class="span11">
+          <h2 name="#contact" id="contact">给33号铺留言</h2>
+            <div id="disqus_thread"></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = '33pu'; // required: replace example with your forum shortname
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </div>
+        
+    
       </section>
 
        <footer>
         <p>
-          本站源代码开放,可以到<a href="https://github.com/DiliCMS/dilicms-offical-site" onclick="_hmt.push(['_trackEvent', 'site', 'visit', 'sourcecode']);" target="_blank">这里</a>取得.<br />
-          © 2013 DiliCMS.
+          本站源代码开放,可以到<a href="https://github.com/yuguo/33pu" target="_blank">这里</a>取得.<br />
+          © 2013 33号铺. <a href="http://yuguo.us" target="_blank">作者：Yuguo</a></li>
         </p>
       </footer>
     </section></section></article> <!-- /container -->

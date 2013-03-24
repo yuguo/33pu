@@ -548,7 +548,6 @@ section {
       font-style: italic;
       width: 85%; }
 
-.navbar {position: fixed;z-index: 888;}
 .case {position: relative;margin-top: 10px;}
 .case h4 {bottom: 0; left: 0; position: absolute;background: white;width: 300px;height: 20px;margin:0px;font-size: 14px;opacity: .8;filter: Alpha(opacity=80);text-align: center;}
 .case h4 span {opacity: 100;filter: Alpha(opacity=100);}
