@@ -50,7 +50,7 @@ class Admin extends CI_Controller {
         $data['cat'] = $this->M_cat->get_all_cat();
 
          //获取搜索关键词
-        $keyword = $_GET['keyword'];
+        $keyword = trim($this->input->get('keyword', TRUE),"'\"");
 
         /* cid是类别id */
         $cid = '0';
