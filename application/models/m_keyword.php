@@ -41,6 +41,6 @@ class M_keyword extends CI_Model{
 		}
 	}
 	function delete_keyword($keyword){
-		$query = $this->db->delete($this->keyword_table,array('keyword_name'=>$keyword));
+		$query = $this->db->delete($this->keyword_table,array('id'=>$keyword));
 	}
 }

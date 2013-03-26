@@ -37,7 +37,7 @@
             echo '<td>'.$row->keyword_name.'</td>';
             echo '<td>'.$row->keyword_click.'</td>';
             echo '<td><a href="##" class="delete-keyword"
-             data-keywordname = "'.$row->keyword_name.'">×</a></td>';
+             data-keywordid = "'.$row->id.'">×</a></td>';
             echo '</tr>';
             $index++;
   				}
@@ -74,10 +74,10 @@
           if (r==true)
           {
             var that = $(this);
-            var keywordname_to_be_delete = that.data('keywordname');
+            var keywordid_to_be_delete = that.data('keywordid');
             $.post('<?php echo site_url("admin/keyword/delete")?>',
               {
-                keyword: keywordname_to_be_delete
+                keyword: keywordid_to_be_delete
               },function(data){
                 console.log(data);
                   if(data){ //如果删除成功

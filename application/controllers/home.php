@@ -93,7 +93,7 @@ class Home extends CI_Controller {
         $data['cat'] = $this->M_cat->get_all_cat();
 
          //获取搜索关键词+过滤
-        $data['keyword'] = trim($this->input->get('keyword', TRUE),"'\"");
+        $data['keyword'] = trim($this->input->get('keyword', TRUE),"'\"><");
 
         $this->M_keyword->add_keyword_if_not_exist($data['keyword']);
 
