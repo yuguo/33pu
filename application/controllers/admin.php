@@ -101,7 +101,7 @@ class Admin extends CI_Controller {
 	public function status($stattype,$page = 1){
 		//按条目
 		if($stattype == 'items'){
-			$limit = 10;
+			$limit = 40;
 			$offset = ($page-1)*$limit;
 			$this->load->library('pagination');
 
