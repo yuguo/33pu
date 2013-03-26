@@ -98,16 +98,18 @@ class Admin extends CI_Controller {
 	 * @param integer offset 数据库偏移量
 	 *
 	 */
-	public function status($stattype,$offset = 0){
+	public function status($stattype,$page = 1){
 		//按条目
 		if($stattype == 'items'){
+			$limit = 10;
+			$offset = ($page-1)*$limit;
 			$this->load->library('pagination');
-
-			$limit=40;
-			//每页显示数目
 
 			$config['base_url'] = site_url('/admin/status/items');
 			//site_url可以防止换域名代码错误。
+
+	        $config['use_page_numbers'] = TRUE;
+	        $config['first_url'] = site_url('/admin/status/items');
 
 			$config['total_rows'] = $this->M_item->count_items();
 			//这是模型里面的方法，获得总数。
@@ -116,6 +118,7 @@ class Admin extends CI_Controller {
 			$config['first_link'] = '首页';
 			$config['last_link'] = '尾页';
 			$config['num_links']=10;
+			$config['uri_segment'] = 4;
 			//上面是自定义文字以及左右的连接数
 
 			$this->pagination->initialize($config);
