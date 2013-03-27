@@ -131,6 +131,7 @@ class TopClient
 		$sysParams["format"] = $this->format;
 		$sysParams["sign_method"] = $this->signMethod;
 		$sysParams["method"] = $request->getApiMethodName();
+		date_default_timezone_set ('Etc/GMT-8');
 		$sysParams["timestamp"] = date("Y-m-d H:i:s");
 		$sysParams["partner_id"] = $this->sdkVersion;
 		if (null != $session)
