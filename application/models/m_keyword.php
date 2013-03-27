@@ -27,8 +27,11 @@ class M_keyword extends CI_Model{
 	}
 
 	function add_keyword_click($keyword){
-		$sql_query = "UPDATE ".$this->keyword_table." SET keyword_click = keyword_click+1 WHERE keyword_name ='".$keyword."'";
-		$this->db->query($sql_query);
+		
+		$this->db->set('keyword_click', 'keyword_click+1', FALSE);
+
+		$this->db->where('keyword_name', $keyword);
+		$this->db->update($this->keyword_table); 
 		return $keyword;
 	}
 

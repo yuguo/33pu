@@ -8,8 +8,8 @@ class M_item extends CI_Model{
 	function __construct()
 	{
 		parent::__construct();
-                $this->cat_table = $this->db->dbprefix('cat');
-                $this->item_table = $this->db->dbprefix('item');
+        $this->cat_table = $this->db->dbprefix('cat');
+        $this->item_table = $this->db->dbprefix('item');
 	}
 
 
@@ -58,8 +58,9 @@ class M_item extends CI_Model{
 	 * 增加条目click_count
 	 *  */
 	function add_click_count($item_id)	{
-		$sql_query = "UPDATE ".$this->item_table." SET click_count = click_count+1 WHERE id =".$item_id;
-		$this->db->query($sql_query);
+		$this->db->set('click_count', 'click_count+1', FALSE);
+		$this->db->where('id', $item_id);
+		$this->db->update($this->item_table); 
 		return $item_id;
 	}
 
@@ -69,16 +70,19 @@ class M_item extends CI_Model{
 	function get_all_item($limit,$offset,$cat='')
 	{
 
-		$this->db->limit($limit,$offset);
 		//如果是分类页
 		if(!empty($cat)){
-			$sql = "SELECT click_count,id,title,click_url,img_url,price,sellernick FROM ".$this->item_table.",".$this->cat_table." WHERE ".$this->item_table.".cid=".$this->cat_table.".cat_id AND ".$this->cat_table.".cat_slug='".$cat."' ORDER BY id DESC LIMIT ".$offset.", ".($offset+$limit);
-			$query=$this->db->query($sql);
+			$this->db->select('click_count,id,title,click_url,img_url,price,sellernick');
+			$where = "cid=cat_id AND cat_slug='".$cat."'";
+			$this->db->join($this->cat_table,$where);
+			$this->db->order_by('id DESC');
+			$this->db->group_by('cid');
+			$query = $this->db->get($this->item_table,$limit,$offset);
 			}
 		//如果是主页
 		else{
 			$this->db->order_by("id", "desc");
-			$query = $this->db->get('item');
+			$query = $this->db->get($this->item_table,$limit,$offset);
 		}
 
 		return $query;
@@ -95,8 +99,12 @@ class M_item extends CI_Model{
 		if(empty($cat_slug)){
 			return $this->db->count_all_results('item');
 		}else{
-			$sql = "SELECT COUNT(id) AS count FROM ".$this->item_table.",".$this->cat_table." WHERE ".$this->item_table.".cid=".$this->cat_table.".cat_id AND ".$this->cat_table.".cat_slug='".$cat_slug."' ORDER BY id DESC";
-			$query=$this->db->query($sql);
+
+			$this->db->select('COUNT(id) AS count');
+			$where = "cid=cat_id AND cat_slug='".$cat_slug."'";
+			$this->db->join($this->cat_table,$where);
+			$this->db->order_by('id DESC');
+			$query = $this->db->get($this->item_table,$limit,$offset);
 
 			if ($query->num_rows() > 0)
 			{
@@ -130,9 +138,8 @@ class M_item extends CI_Model{
      * @return
      */
     function searchItem($keyword){
-
-		$sql = "SELECT * FROM item WHERE title LIKE '%".$keyword."%'";
-		$query = $this->db->query($sql);
+		$this->db->like('title',$keyword);
+		$query = $this->db->get($this->item_table);
 		return $query;
     }
 
@@ -142,8 +149,9 @@ class M_item extends CI_Model{
      * @return 查询结果
      */
 	function query_shops(){
-		$sql = "SELECT sellernick,count(sellernick) as count,SUM(click_count) as sum FROM ".$this->item_table." GROUP BY sellernick ORDER BY count DESC";
-		$query = $this->db->query($sql);
+		$this->db->select("sellernick,count(sellernick) as count,SUM(click_count) as sum");
+		$this->db->group_by('sellernick')->order_by('count DESC');
+		$query = $this->db->get($this->item_table);
 		return $query;
 	}
 
