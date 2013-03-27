@@ -67,7 +67,7 @@ class M_item extends CI_Model{
 	//获得所有条目
 	//$limit为每页书目，必填
 	//$offset为偏移，必填
-	function get_all_item($limit,$offset,$cat='')
+	function get_all_item($limit='40',$offset='0',$cat='')
 	{
 
 		//如果是分类页
@@ -76,7 +76,6 @@ class M_item extends CI_Model{
 			$where = "cid=cat_id AND cat_slug='".$cat."'";
 			$this->db->join($this->cat_table,$where);
 			$this->db->order_by('id DESC');
-			$this->db->group_by('cid');
 			$query = $this->db->get($this->item_table,$limit,$offset);
 			}
 		//如果是主页
@@ -104,7 +103,7 @@ class M_item extends CI_Model{
 			$where = "cid=cat_id AND cat_slug='".$cat_slug."'";
 			$this->db->join($this->cat_table,$where);
 			$this->db->order_by('id DESC');
-			$query = $this->db->get($this->item_table,$limit,$offset);
+			$query = $this->db->get($this->item_table);
 
 			if ($query->num_rows() > 0)
 			{
