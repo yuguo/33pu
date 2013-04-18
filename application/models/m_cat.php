@@ -57,10 +57,13 @@ class M_cat extends CI_Model{
      * @return 查询结果
      */
 	function query_cats(){
-                $cat_table = $this->cat_table;
-                $item_table = $this->item_table;
-		$sql = "SELECT $cat_table.cat_name,COUNT($item_table.id) as count, SUM($item_table.click_count) as sum FROM $item_table,$cat_table WHERE $item_table.cid = $cat_table.cat_id GROUP BY $item_table.cid ORDER BY count DESC";
-		$query = $this->db->query($sql);
+        
+		$this->db->select('cat_name,COUNT(id) as count, SUM(click_count) as sum');
+		$where = "cid=cat_id";
+		$this->db->join($this->cat_table,$where);
+		$this->db->order_by('count DESC');
+		$this->db->group_by('cid');
+		$query = $this->db->get($this->item_table);
 		return $query;
 	}
 
@@ -74,13 +77,14 @@ class M_cat extends CI_Model{
                 $cat_table = $this->cat_table;
                 $item_table = $this->item_table;
 		if($cid == 0){
-			$sql = "SELECT SUM(click_count) as sum FROM $item_table";
-			$query = $this->db->query($sql);
+			$this->db->select('SUM(click_count) as sum');
+			$query = $this->db->get($item_table);
 			$row = $query->row();
 			  return $row->sum;
 		}else {
-			$sql = "SELECT SUM(click_count) as sum FROM item WHERE $item_table.cid ='".$cid."'";
-			$query = $this->db->query($sql);
+			$this->db->where('cid='.$cid);
+			$this->db->select('SUM(click_count) as sum');
+			$query = $this->db->get($item_table);
 			if ($query->num_rows() > 0)
 			{
 				$row = $query->row();

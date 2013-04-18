@@ -26,8 +26,10 @@ function puPrintItem($resp){
 			foreach($resp->taobaoke_items->taobaoke_item as $taobaoke_item){
 			?>
 				<li>
-					<a href='<?php echo $taobaoke_item->click_url ?>' data-taobaoke_id='<?php echo $taobaoke_item->num_iid ?>' title='<?php echo strip_tags($taobaoke_item->title)?>' data-price='<?php echo $taobaoke_item->price?>' data-commission='<?php echo $taobaoke_item->commission ?>' data-sellernick='<?php echo $taobaoke_item->nick; ?>'>
-					<img src="<?php echo $taobaoke_item->pic_url?>" alt="<?php echo $taobaoke_item->title?>"/>
+					<a href='<?php echo $taobaoke_item->click_url ?>' data-taobaoke_id='<?php echo $taobaoke_item->num_iid ?>' 
+					title='<?php echo htmlspecialchars(strip_tags($taobaoke_item->title),ENT_QUOTES); ?>' data-price='<?php echo $taobaoke_item->price?>' data-commission='<?php echo $taobaoke_item->commission ?>' 
+					data-sellernick='<?php echo htmlspecialchars($taobaoke_item->nick,ENT_QUOTES); ?>'>
+					<img src="<?php echo $taobaoke_item->pic_url?>" alt="<?php echo htmlspecialchars(strip_tags($taobaoke_item->title),ENT_QUOTES)?>"/>
 					</a>
 					<p><span class="right"><?php echo $taobaoke_item->volume ?>件/30天</span><span><?php echo $taobaoke_item->commission ?></span> / <span><?php echo $taobaoke_item->price?></span></p>
 				</li>
