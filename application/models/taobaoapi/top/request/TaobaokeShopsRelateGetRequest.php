@@ -3,7 +3,7 @@
  * TOP API: taobao.taobaoke.shops.relate.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class TaobaokeShopsRelateGetRequest
 {
@@ -33,7 +33,7 @@ class TaobaokeShopsRelateGetRequest
 	private $outerCode;
 	
 	/** 
-	 * 淘客用户的pid,用于生成点击串.nick和pid都传入的话,以pid为准
+	 * 用户的pid,必须是mm_xxxx_0_0这种格式中间的"xxxx". 注意nick和pid至少需要传递一个,如果2个都传了,将以pid为准,且pid的最大长度是20。第一次调用接口的用户，推荐该入参不要填写，使用nick=（淘宝账号）的方式去获取，以免出错。
 	 **/
 	private $pid;
 	
@@ -183,5 +183,10 @@ class TaobaokeShopsRelateGetRequest
 	{
 		
 		RequestCheckUtil::checkNotNull($this->fields,"fields");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

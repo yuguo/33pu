@@ -3,17 +3,17 @@
  * TOP API: taobao.taobaoke.shops.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class TaobaokeShopsGetRequest
 {
 	/** 
-	 * 前台类目id
+	 * 店铺前台展示类目id，可以通过taobao.shopcats.list.get获取。
 	 **/
 	private $cid;
 	
 	/** 
-	 * 店铺商品数查询结束值
+	 * 店铺商品数查询结束值。需要跟start_auctioncount同时设置才生效，只设置该值不生效。
 	 **/
 	private $endAuctioncount;
 	
@@ -37,6 +37,11 @@ class TaobaokeShopsGetRequest
 	 * 需要返回的字段，目前包括如下字段 user_id click_url shop_title commission_rate seller_credit shop_type auction_count total_auction
 	 **/
 	private $fields;
+	
+	/** 
+	 * 标识一个应用是否来在无线或者手机应用,如果是true则会使用其他规则加密点击串.如果不传值,则默认是false.
+	 **/
+	private $isMobile;
 	
 	/** 
 	 * 店铺主题关键字查询
@@ -69,12 +74,24 @@ class TaobaokeShopsGetRequest
 	private $pageSize;
 	
 	/** 
-	 * 淘客用户的pid,用于生成点击串.nick和pid都传入的话,以pid为准
+	 * 用户的pid,必须是mm_xxxx_0_0这种格式中间的"xxxx". 注意nick和pid至少需要传递一个,如果2个都传了,将以pid为准,且pid的最大长度是20。第一次调用接口的用户，推荐该入参不要填写，使用nick=（淘宝账号）的方式去获取，以免出错。
 	 **/
 	private $pid;
 	
 	/** 
-	 * 店铺宝贝数查询开始值
+	 * 排序字段。目前支持的排序字段有：
+commission_rate，auction_count，total_auction。必须输入这三个任意值，否则排序无效
+	 **/
+	private $sortField;
+	
+	/** 
+	 * 排序类型.必须输入desc,asc任一值，否则无效
+desc-降序,asc-升序
+	 **/
+	private $sortType;
+	
+	/** 
+	 * 店铺宝贝数查询开始值。需要跟end_auctioncount同时设置才生效，只设置该值不生效。
 	 **/
 	private $startAuctioncount;
 	
@@ -162,6 +179,17 @@ class TaobaokeShopsGetRequest
 		return $this->fields;
 	}
 
+	public function setIsMobile($isMobile)
+	{
+		$this->isMobile = $isMobile;
+		$this->apiParas["is_mobile"] = $isMobile;
+	}
+
+	public function getIsMobile()
+	{
+		return $this->isMobile;
+	}
+
 	public function setKeyword($keyword)
 	{
 		$this->keyword = $keyword;
@@ -239,6 +267,28 @@ class TaobaokeShopsGetRequest
 		return $this->pid;
 	}
 
+	public function setSortField($sortField)
+	{
+		$this->sortField = $sortField;
+		$this->apiParas["sort_field"] = $sortField;
+	}
+
+	public function getSortField()
+	{
+		return $this->sortField;
+	}
+
+	public function setSortType($sortType)
+	{
+		$this->sortType = $sortType;
+		$this->apiParas["sort_type"] = $sortType;
+	}
+
+	public function getSortType()
+	{
+		return $this->sortType;
+	}
+
 	public function setStartAuctioncount($startAuctioncount)
 	{
 		$this->startAuctioncount = $startAuctioncount;
@@ -297,5 +347,10 @@ class TaobaokeShopsGetRequest
 	{
 		
 		RequestCheckUtil::checkNotNull($this->fields,"fields");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

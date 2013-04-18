@@ -3,7 +3,7 @@
  * TOP API: taobao.itempropvalues.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class ItempropvaluesGetRequest
 {
@@ -21,6 +21,11 @@ class ItempropvaluesGetRequest
 	 * 属性和属性值 id串，格式例如(pid1;pid2)或(pid1:vid1;pid2:vid2)或(pid1;pid2:vid2)
 	 **/
 	private $pvs;
+	
+	/** 
+	 * 获取类目的类型：1代表集市、2代表天猫
+	 **/
+	private $type;
 	
 	private $apiParas = array();
 	
@@ -57,6 +62,17 @@ class ItempropvaluesGetRequest
 		return $this->pvs;
 	}
 
+	public function setType($type)
+	{
+		$this->type = $type;
+		$this->apiParas["type"] = $type;
+	}
+
+	public function getType()
+	{
+		return $this->type;
+	}
+
 	public function getApiMethodName()
 	{
 		return "taobao.itempropvalues.get";
@@ -72,5 +88,12 @@ class ItempropvaluesGetRequest
 		
 		RequestCheckUtil::checkNotNull($this->cid,"cid");
 		RequestCheckUtil::checkNotNull($this->fields,"fields");
+		RequestCheckUtil::checkMaxValue($this->type,2,"type");
+		RequestCheckUtil::checkMinValue($this->type,1,"type");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

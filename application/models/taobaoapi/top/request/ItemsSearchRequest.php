@@ -163,6 +163,10 @@ false：非自动发货
 	private $wwStatus;
 	
 	private $apiParas = array();
+
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+	}
 	
 	public function setAuctionFlag($auctionFlag)
 	{

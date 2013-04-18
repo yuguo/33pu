@@ -3,12 +3,12 @@
  * TOP API: taobao.taobaoke.report.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class TaobaokeReportGetRequest
 {
 	/** 
-	 * 需要查询报表的日期，有效的日期为最近3个月内的某一天，格式为:yyyyMMdd,如20090520.
+	 * 买家确认收货时间，有效的日期为最近3个月内的某一天，格式为:yyyyMMdd,如20090520.
 	 **/
 	private $date;
 	
@@ -91,5 +91,10 @@ class TaobaokeReportGetRequest
 		RequestCheckUtil::checkMaxValue($this->pageNo,499,"pageNo");
 		RequestCheckUtil::checkMinValue($this->pageNo,1,"pageNo");
 		RequestCheckUtil::checkMaxValue($this->pageSize,100,"pageSize");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

@@ -3,7 +3,7 @@
  * TOP API: taobao.itemcats.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class ItemcatsGetRequest
 {
@@ -71,5 +71,12 @@ class ItemcatsGetRequest
 	{
 		
 		RequestCheckUtil::checkMaxListSize($this->cids,1000,"cids");
+		RequestCheckUtil::checkMaxValue($this->parentCid,9223372036854775807,"parentCid");
+		RequestCheckUtil::checkMinValue($this->parentCid,0,"parentCid");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

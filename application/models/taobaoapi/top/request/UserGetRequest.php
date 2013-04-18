@@ -3,12 +3,12 @@
  * TOP API: taobao.user.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class UserGetRequest
 {
 	/** 
-	 * 需返回的字段列表。可选值：User结构体中的所有字段；以半角逗号(,)分隔。不支持：地址，真实姓名，身份证，手机，电话
+	 * 需返回的字段列表。可选值：User结构体中的所有字段；以半角逗号(,)分隔。需要用户授权才能获取用户对应的uid和user_id。
 	 **/
 	private $fields;
 	
@@ -58,5 +58,10 @@ class UserGetRequest
 	{
 		
 		RequestCheckUtil::checkNotNull($this->fields,"fields");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

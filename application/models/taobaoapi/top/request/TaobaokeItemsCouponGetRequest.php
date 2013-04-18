@@ -3,7 +3,7 @@
  * TOP API: taobao.taobaoke.items.coupon.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class TaobaokeItemsCouponGetRequest
 {
@@ -13,7 +13,7 @@ class TaobaokeItemsCouponGetRequest
 	private $area;
 	
 	/** 
-	 * 商品所属分类id
+	 * 标准商品后台类目id。该ID可以通过taobao.itemcats.get接口获取到。
 	 **/
 	private $cid;
 	
@@ -23,7 +23,7 @@ class TaobaokeItemsCouponGetRequest
 	private $couponType;
 	
 	/** 
-	 * 累计推广量范围结束
+	 * 设置30天累计推广量（与返回数据中的commission_num字段对应）上限.注：该字段要与start_commissionNum一起使用才生效
 	 **/
 	private $endCommissionNum;
 	
@@ -38,7 +38,7 @@ class TaobaokeItemsCouponGetRequest
 	private $endCommissionVolume;
 	
 	/** 
-	 * 折扣比例范围,如：8000表示80.00%.注：要起始折扣比率和最高折扣比率一起设置才有效
+	 * 设置折扣比例范围上限,如：8000表示80.00%.注：要起始折扣比率和最高折扣比率一起设置才有效
 	 **/
 	private $endCouponRate;
 	
@@ -48,7 +48,7 @@ class TaobaokeItemsCouponGetRequest
 	private $endCredit;
 	
 	/** 
-	 * 交易量范围结束
+	 * 设置商品总成交量（与返回字段volume对应）上限。
 	 **/
 	private $endVolume;
 	
@@ -88,9 +88,14 @@ class TaobaokeItemsCouponGetRequest
 	private $pageSize;
 	
 	/** 
-	 * 淘客用户的pid,用于生成点击串.nick和pid都传入的话,以pid为准
+	 * 用户的pid,必须是mm_xxxx_0_0这种格式中间的"xxxx". 注意nick和pid至少需要传递一个,如果2个都传了,将以pid为准,且pid的最大长度是20。第一次调用接口的用户，推荐该入参不要填写，使用nick=（淘宝账号）的方式去获取，以免出错。
 	 **/
 	private $pid;
+	
+	/** 
+	 * 点击串跳转类型，1：单品，2：单品中间页（无线暂无）
+	 **/
+	private $referType;
 	
 	/** 
 	 * 店铺类型.默认all,商城:b,集市:c
@@ -105,13 +110,12 @@ credit_desc(信用等级从高到低),
 credit_asc(信用等级从低到高),
 commissionRate_desc(佣金比率从高到低),
 commissionRate_asc(佣金比率从低到高),
-commissionVome_desc(成交量成高到低),
-commissionVome_asc(成交量从低到高)
+volume_desc(成交量成高到低), volume_asc(成交量从低到高)
 	 **/
 	private $sort;
 	
 	/** 
-	 * 累计推广量范围开始
+	 * 设置30天累计推广量（与返回数据中的commission_num字段对应）下限.注：该字段要与end_commissionNum一起使用才生效
 	 **/
 	private $startCommissionNum;
 	
@@ -126,7 +130,7 @@ commissionVome_asc(成交量从低到高)
 	private $startCommissionVolume;
 	
 	/** 
-	 * 折扣比例范围,如：7000表示70.00%
+	 * 设置折扣比例范围下限,如：7000表示70.00%
 	 **/
 	private $startCouponRate;
 	
@@ -136,7 +140,7 @@ commissionVome_asc(成交量从低到高)
 	private $startCredit;
 	
 	/** 
-	 * 交易量范围开始
+	 * 设置商品总成交量（与返回字段volume对应）下限。
 	 **/
 	private $startVolume;
 	
@@ -329,6 +333,17 @@ commissionVome_asc(成交量从低到高)
 		return $this->pid;
 	}
 
+	public function setReferType($referType)
+	{
+		$this->referType = $referType;
+		$this->apiParas["refer_type"] = $referType;
+	}
+
+	public function getReferType()
+	{
+		return $this->referType;
+	}
+
 	public function setShopType($shopType)
 	{
 		$this->shopType = $shopType;
@@ -431,5 +446,10 @@ commissionVome_asc(成交量从低到高)
 	{
 		
 		RequestCheckUtil::checkNotNull($this->fields,"fields");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

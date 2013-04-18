@@ -3,7 +3,7 @@
  * TOP API: taobao.taobaoke.items.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class TaobaokeItemsGetRequest
 {
@@ -28,17 +28,17 @@ class TaobaokeItemsGetRequest
 	private $cashOndelivery;
 	
 	/** 
-	 * 商品所属分类id
+	 * 标准商品后台类目id。该ID可以通过taobao.itemcats.get接口获取到。
 	 **/
 	private $cid;
 	
 	/** 
-	 * 最高累计推广佣金选项
+	 * 30天累计推广量（与返回数据中的commission_num字段对应）上限.
 	 **/
 	private $endCommissionNum;
 	
 	/** 
-	 * 最高佣金比率选项，如：2345表示23.45%。注：要起始佣金比率和最高佣金比率一起设置才有效。
+	 * 佣金比率上限，如：2345表示23.45%。注：start_commissionRate和end_commissionRate一起设置才有效。
 	 **/
 	private $endCommissionRate;
 	
@@ -53,7 +53,7 @@ class TaobaokeItemsGetRequest
 	private $endPrice;
 	
 	/** 
-	 * 累计推广量范围结束
+	 * 商品总成交量（与返回字段volume对应）上限。
 	 **/
 	private $endTotalnum;
 	
@@ -69,7 +69,7 @@ class TaobaokeItemsGetRequest
 	private $guarantee;
 	
 	/** 
-	 * 标识一个应用是否来在无线或者手机应用,如果是true则会使用其他规则加密点击串.如果不穿值,则默认是false.
+	 * 标识一个应用是否来在无线或者手机应用,如果是true则会使用其他规则加密点击串.如果不传值,则默认是false.
 	 **/
 	private $isMobile;
 	
@@ -105,7 +105,7 @@ class TaobaokeItemsGetRequest
 	private $overseasItem;
 	
 	/** 
-	 * 结果页数.1~99
+	 * 结果页数.1~10
 	 **/
 	private $pageNo;
 	
@@ -116,7 +116,7 @@ class TaobaokeItemsGetRequest
 	
 	/** 
 	 * 用户的pid,必须是mm_xxxx_0_0这种格式中间的"xxxx".
-<font color="red">注意nick和pid至少需要传递一个,如果2个都传了,将以pid为准,且pid的最大长度是20</font>
+<font color="red">注意nick和pid至少需要传递一个,如果2个都传了,将以pid为准,且pid的最大长度是20</font>。第一次调用接口的用户，推荐该入参不要填写，使用nick=（淘宝账号）的方式去获取，以免出错。
 	 **/
 	private $pid;
 	
@@ -124,6 +124,11 @@ class TaobaokeItemsGetRequest
 	 * 是否如实描述(即:先行赔付)商品，设置为true表示该商品是如实描述的商品，设置为false或不设置表示不判断这个属性
 	 **/
 	private $realDescribe;
+	
+	/** 
+	 * 点击串跳转类型，1：单品，2：单品中间页（无线暂无）
+	 **/
+	private $referType;
 	
 	/** 
 	 * 是否支持7天退换，设置为true表示该商品支持7天退换，设置为false或不设置表示不判断这个属性
@@ -148,12 +153,12 @@ delistTime_asc(商品下架时间从低到高)
 	private $sort;
 	
 	/** 
-	 * 起始累计推广量佣金.注：返回的数据是30天内累计推广量，具该字段要与最高累计推广量一起使用才生效
+	 * 30天累计推广量（与返回数据中的commission_num字段对应）下限.注：该字段要与end_commissionNum一起使用才生效
 	 **/
 	private $startCommissionNum;
 	
 	/** 
-	 * 起始佣金比率选项，如：1234表示12.34%
+	 * 佣金比率下限，如：1234表示12.34%
 	 **/
 	private $startCommissionRate;
 	
@@ -189,7 +194,7 @@ delistTime_asc(商品下架时间从低到高)
 	private $startPrice;
 	
 	/** 
-	 * 累计推广量范围开始
+	 * 商品总成交量（与返回字段volume对应）下限。
 	 **/
 	private $startTotalnum;
 	
@@ -453,6 +458,17 @@ delistTime_asc(商品下架时间从低到高)
 		return $this->realDescribe;
 	}
 
+	public function setReferType($referType)
+	{
+		$this->referType = $referType;
+		$this->apiParas["refer_type"] = $referType;
+	}
+
+	public function getReferType()
+	{
+		return $this->referType;
+	}
+
 	public function setSevendaysReturn($sevendaysReturn)
 	{
 		$this->sevendaysReturn = $sevendaysReturn;
@@ -556,8 +572,12 @@ delistTime_asc(商品下架时间从低到高)
 		
 		RequestCheckUtil::checkMaxValue($this->cid,2147483647,"cid");
 		RequestCheckUtil::checkNotNull($this->fields,"fields");
-		RequestCheckUtil::checkMaxValue($this->pageNo,1000000,"pageNo");
+		RequestCheckUtil::checkMaxValue($this->pageNo,10,"pageNo");
 		RequestCheckUtil::checkMaxValue($this->pageSize,400,"pageSize");
-		RequestCheckUtil::checkMaxLength($this->pid,20,"pid");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

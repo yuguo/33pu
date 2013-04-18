@@ -3,7 +3,7 @@
  * TOP API: taobao.shoprecommend.shops.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class ShoprecommendShopsGetRequest
 {
@@ -89,5 +89,10 @@ class ShoprecommendShopsGetRequest
 		RequestCheckUtil::checkNotNull($this->count,"count");
 		RequestCheckUtil::checkNotNull($this->recommendType,"recommendType");
 		RequestCheckUtil::checkNotNull($this->sellerId,"sellerId");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }

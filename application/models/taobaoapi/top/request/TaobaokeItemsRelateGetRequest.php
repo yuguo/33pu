@@ -3,12 +3,12 @@
  * TOP API: taobao.taobaoke.items.relate.get request
  * 
  * @author auto create
- * @since 1.0, 2012-06-16 16:33:14
+ * @since 1.0, 2013-04-18 16:44:01
  */
 class TaobaokeItemsRelateGetRequest
 {
 	/** 
-	 * 分类id.推荐类型为5时cid不能为空
+	 * 分类id.推荐类型为5时cid不能为空。仅支持叶子类目ID，即通过taobao.itemcats.get获取到is_parent=false的cid。
 	 **/
 	private $cid;
 	
@@ -43,17 +43,30 @@ class TaobaokeItemsRelateGetRequest
 	private $outerCode;
 	
 	/** 
-	 * 淘客用户的pid,用于生成点击串.nick和pid都传入的话,以pid为准
+	 * 用户的pid,必须是mm_xxxx_0_0这种格式中间的"xxxx". 注意nick和pid至少需要传递一个,如果2个都传了,将以pid为准,且pid的最大长度是20。第一次调用接口的用户，推荐该入参不要填写，使用nick=（淘宝账号）的方式去获取，以免出错。
 	 **/
 	private $pid;
 	
 	/** 
-	 * 推荐类型.1:同类商品推荐;2:异类商品推荐;3:同店商品推荐;4:店铺热门推荐;5:类目热门推荐
+	 * 点击串跳转类型，1：单品，2：单品中间页（无线暂无）
+	 **/
+	private $referType;
+	
+	/** 
+	 * <p>推荐类型.</p>
+<p>1:同类商品推荐;此时必须得输入num_iid</p>
+<p>2:异类商品推荐;此时必须得输入num_iid</p>
+<p>3:同店商品推荐;此时必须得输入num_iid</p>
+<p>4:店铺热门推荐;此时必须得输入seller_id，这里的seller_id得通过<a href="http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:10449">taobao.taobaoke.shops.get</a>
+跟<a href="http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:21419">taobao.taobaoke.widget.shops.convert</a>这两个接口去获取user_id字段</p>
+<p>5:类目热门推荐;此时必须得输入cid</p>
 	 **/
 	private $relateType;
 	
 	/** 
-	 * 卖家id.推荐类型为4时seller_id不能为空
+	 * 卖家的用户id，这里的seller_id得通过<a href="http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:10449">taobao.taobaoke.shops.get</a>
+跟<a href="http://api.taobao.com/apidoc/api.htm?path=cid:38-apiId:21419">taobao.taobaoke.widget.shops.convert</a>这两个接口去获取user_id字段。
+注：推荐类型为4时seller_id不能为空
 	 **/
 	private $sellerId;
 	
@@ -66,6 +79,11 @@ class TaobaokeItemsRelateGetRequest
 	 * default(默认排序,关联推荐相关度),price_desc(价格从高到低), price_asc(价格从低到高),commissionRate_desc(佣金比率从高到低), commissionRate_asc(佣金比率从低到高), commissionNum_desc(成交量成高到低), commissionNum_asc(成交量从低到高)
 	 **/
 	private $sort;
+	
+	/** 
+	 * 商品数字ID(带有跟踪效果)
+	 **/
+	private $trackIid;
 	
 	private $apiParas = array();
 	
@@ -157,6 +175,17 @@ class TaobaokeItemsRelateGetRequest
 		return $this->pid;
 	}
 
+	public function setReferType($referType)
+	{
+		$this->referType = $referType;
+		$this->apiParas["refer_type"] = $referType;
+	}
+
+	public function getReferType()
+	{
+		return $this->referType;
+	}
+
 	public function setRelateType($relateType)
 	{
 		$this->relateType = $relateType;
@@ -201,6 +230,17 @@ class TaobaokeItemsRelateGetRequest
 		return $this->sort;
 	}
 
+	public function setTrackIid($trackIid)
+	{
+		$this->trackIid = $trackIid;
+		$this->apiParas["track_iid"] = $trackIid;
+	}
+
+	public function getTrackIid()
+	{
+		return $this->trackIid;
+	}
+
 	public function getApiMethodName()
 	{
 		return "taobao.taobaoke.items.relate.get";
@@ -216,5 +256,10 @@ class TaobaokeItemsRelateGetRequest
 		
 		RequestCheckUtil::checkNotNull($this->fields,"fields");
 		RequestCheckUtil::checkNotNull($this->relateType,"relateType");
+	}
+	
+	public function putOtherTextParam($key, $value) {
+		$this->apiParas[$key] = $value;
+		$this->$key = $value;
 	}
 }
