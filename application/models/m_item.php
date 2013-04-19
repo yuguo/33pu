@@ -96,7 +96,7 @@ class M_item extends CI_Model{
 	 */
 	function count_items($cat_slug=''){
 		if(empty($cat_slug)){
-			return $this->db->count_all_results('item');
+			return $this->db->count_all_results($this->item_table);
 		}else{
 
 			$this->db->select('COUNT(id) AS count');
@@ -126,7 +126,7 @@ class M_item extends CI_Model{
         $data = array(
                'id' => $item_id
             );
-        $query = $this->db->get_where('item', $data);
+        $query = $this->db->get_where($this->item_table, $data);
         $query;
     }
 
@@ -164,7 +164,7 @@ class M_item extends CI_Model{
         $data = array(
                       'id' => $item_id
                    );
-               $query = $this->db->get_where('item', $data);
+               $query = $this->db->get_where($this->item_table, $data);
         if($query->num_rows() > 0){
             return true;
         }else {
