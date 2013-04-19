@@ -1,16 +1,17 @@
 <div id="search_input">
     <a href="<?php echo site_url('admin')?>" class="logo"></a>
     <form id="myForm" action="<?php echo site_url('admin/search')?>" method="get">
-    <input type="text" value="<?php echo $keyword?>" name="keyword" class="input-xlarge" style="margin-bottom:0;">
-	 <select id="cat_select" name="cat_select" style="margin-bottom:0;">
-		 <option value="0">全部</option>
-		 <?php
-		   foreach($cat->result() as $row){
-			   echo '<option value="'.$row->cat_id.'">'.$row->cat_name.'</option>';
-			}
-		 ?>
-	  </select>
-    <input type="submit" value="搜索" class="btn btn-success" />
+	    <input type="text" value="<?php echo $keyword?>" name="keyword" class="input-xlarge" style="margin-bottom:0;">
+		 <select id="cat_select" name="cat_select" style="margin-bottom:0;">
+			 <option value="0">全部</option>
+			 <?php
+			   foreach($cat->result() as $row){
+				   echo '<option value="'.$row->cat_id.'">'.$row->cat_name.'</option>';
+				}
+			 ?>
+		  </select>
+	    <input type="submit" value="搜索" class="btn btn-success" />
+	</form>
 </div><!-- .search_input -->
 
 <?php
