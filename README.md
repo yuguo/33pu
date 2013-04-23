@@ -26,6 +26,7 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 7. 访问 `站点url/admin/cat` 修改类别slug为英文（中文url目前有bug，而且不优雅）
 8. 访问 `站点url/admin` ，选择类别之后搜索关键词，点击某个条目之后再选择图片，条目就会出现在首页（请选择类别之后再搜索关键词，这样条目会自动添加到该类别）
 9. 请修改 `application/views/home.php` 底部的统计代码为你自己的百度统计或者Google Analytics.
+10. 如果需要配置HTTP代理服务器，修改`$config['http_proxy'] = '';`一项。
 
 ## 说明 ##
 - 后台搜索的时候的过滤条件在后台配置是，您可以自己修改配置`application/models/m_taobaoapi.php`：
