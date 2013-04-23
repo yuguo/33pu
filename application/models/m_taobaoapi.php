@@ -13,6 +13,9 @@ class M_taobaoapi extends CI_Model{
 		//淘宝客PID请在application/config/site_info中设置
         define('PID',    $this->config->item('taobaoke_pid'));
 
+        $http_proxy = $this->config->item('http_proxy');
+        define('PU_HTTP_PROXY',    $http_proxy);
+
         include "taobaoapi/TopSdk.php";
 	}
 

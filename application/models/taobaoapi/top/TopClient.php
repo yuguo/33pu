@@ -42,6 +42,9 @@ class TopClient
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_FAILONERROR, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+			curl_setopt($ch, CURLOPT_PROXY, PU_HTTP_PROXY);
+		
 		//https 请求
 		if(strlen($url) > 5 && strtolower(substr($url,0,5)) == "https" ) {
 			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
