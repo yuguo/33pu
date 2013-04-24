@@ -15,18 +15,15 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 或者下载最新的ZIP
 
 ## 安装 ##
-1. 配置 `application/config/config.php` 为你的站点url，配置 `application/config/site_info.php` 中的站点名称、appkey、secret还有最重要的taobaoke pid。
+1. 配置 `application/config/config.php` 为你的站点url，配置 `application/config/site_info.php` 中的站点名称、appkey、secret还有最重要的taobaoke pid。具体见说明。
 2. 首先自己在数据库中创建一个数据库（比如使用phpmyadmin之类的可视化工具
 ），然后配置 `application/database` 中的 `username`，`password`，`database`
-3. 如果使用**Apache服务器**，配置 `.htaccess` 中的RewriteBase为程序锁在文件夹目录，比如`http://localhost/33pu/` 即为 `33pu` ，如果是在根目录比如 `http://localhost/` 即为 `/`。（如果使用**Nginx服务器**，配置见最后说明）
-如果没有正确配置.htaccess，可能会在后面的步骤中出现404，这时候在站点后面加上一个index.php即可。
-4. 访问 `站点url/login/install` ，输入管理员的email和密码
-5. 访问 `站点url/login` 登录
-6. 访问 `站点url/admin/cat` 新增你的站点的商品类别（类别会出现在首页tab中）
-7. 访问 `站点url/admin/cat` 修改类别slug为英文（中文url目前有bug，而且不优雅）
-8. 访问 `站点url/admin` ，选择类别之后搜索关键词，点击某个条目之后再选择图片，条目就会出现在首页（请选择类别之后再搜索关键词，这样条目会自动添加到该类别）
-9. 请修改 `application/views/home.php` 底部的统计代码为你自己的百度统计或者Google Analytics.
-10. 如果需要配置HTTP代理服务器，修改`$config['http_proxy'] = '';`一项。
+3. 访问 `站点url/index.php/login/install` ，输入管理员的email和密码
+4. 访问 `站点url/index.php/login` 登录
+5. 访问 `站点url/index.php/admin/cat` 新增你的站点的商品类别（类别会出现在首页tab中）
+6. 访问 `站点url/index.php/admin/cat` 修改类别slug为英文（中文url目前有bug，而且不优雅）
+7. 访问 `站点url/index.php/admin` ，选择类别之后搜索关键词，点击某个条目之后再选择图片，条目就会出现在首页（请选择类别之后再搜索关键词，这样条目会自动添加到该类别）
+8. 请修改 `application/views/home.php` 底部的统计代码为你自己的百度统计或者Google Analytics.
 
 ## 说明 ##
 - 后台搜索的时候的过滤条件在后台配置是，您可以自己修改配置`application/models/m_taobaoapi.php`：
@@ -43,6 +40,14 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 - 后台UI基于[Bootstrap](http://twitter.github.com/bootstrap/)构建。
 - 整站的JS都是基于[jQuery](http://jquery.com/)构建。
 - 数据来源于[淘宝开放平台](http://open.taobao.com/index.htm)。
+
+## Apache配置说明 ##
+	
+如果你不爽url后面都跟着一大串`index.php`，那么可以在站点根目录加上`.htaccess`文件，参考`.htaccess.example`即可。
+
+比如`http://localhost/33pu/` 即为 `33pu` ，如果是在根目录比如 `http://localhost/` 即为 `/`。
+
+增加`.htaccess`文件之后，在访问站点的时候就不再需要加上index.php。
 
 ## Nginx配置说明 ##
 

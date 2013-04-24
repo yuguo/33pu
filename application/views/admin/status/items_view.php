@@ -45,13 +45,11 @@
 	<?php } ?>
 </div>
 
-
-
-
 <script type='text/javascript' src='<?php echo base_url()?>assets/js/jquery.js'></script>
 <script>
 	(function($){
 		$('.btn_delete').click(function(){
+			event.preventDefault();
 			var r=confirm("你真的真的要删除吗？无法恢复！");
 				if (r==true)
 				{
@@ -69,10 +67,6 @@
 				} else
 				{
 				}
-
-
-
-			event.preventDefault();
 		});
 	})(jQuery);
 </script>
