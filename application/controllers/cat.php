@@ -32,11 +32,12 @@ class Cat extends CI_Controller {
 
 		$limit=40;
 		//每页显示数目
+		$cat_slug_decode = rawurldecode($cat_slug);
 
 		$config['base_url'] = site_url('/cat/'.$cat_slug);
 		//site_url可以防止换域名代码错误。
 
-		$config['total_rows'] = $this->M_item->count_items($cat_slug);
+		$config['total_rows'] = $this->M_item->count_items($cat_slug_decode);
 		//这是模型里面的方法，获得总数。
 
 		$config['per_page'] = $limit;
@@ -58,10 +59,10 @@ class Cat extends CI_Controller {
 		$this->load->model('M_cat');
 		$data['cat']=$this->M_cat->get_all_cat();
 
-		$data['cat_slug'] = $cat_slug;
+		$data['cat_slug'] = $cat_slug_decode;
 
 		//所有条目数据
-		$data['items']=$this->M_item->get_all_item($limit,($page-1)*$limit,$cat_slug);
+		$data['items']=$this->M_item->get_all_item($limit,($page-1)*$limit,$cat_slug_decode);
 
 		//站点信息
 		$data['site_name'] = $this->config->item('site_name');

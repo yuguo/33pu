@@ -51,7 +51,7 @@
 							if(!empty($cat_slug) && $row->cat_slug == $cat_slug){
 								$is_current = 'current-menu-item';
 							}
-						   echo '<li class="'.$is_current.'"><a href="'.site_url('cat/'.$row->cat_slug).'">'.$row->cat_name.'</a></li>';
+						   echo '<li class="'.$is_current.'"><a href="'.site_url('cat/'.rawurlencode($row->cat_slug)).'">'.$row->cat_name.'</a></li>';
 						}
 					 ?>
 				</ul>
