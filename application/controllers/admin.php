@@ -254,17 +254,6 @@ class Admin extends CI_Controller {
 	}
 
 
-    /**
-     * get_item
-     *
-     * @param
-     * @return
-     */
-    public function getitem($item_id){
-        $itemExist = $this->M_item->itemExist($item_id);
-        echo $itemExist;
-    }
-
 }
 
 /* End of file welcome.php */

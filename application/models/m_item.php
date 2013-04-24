@@ -122,13 +122,16 @@ class M_item extends CI_Model{
      * @param integer $item_id 条目ID
      * @return
      */
-    function getItem($item_id){
-        $data = array(
-               'id' => $item_id
-            );
-        $query = $this->db->get_where($this->item_table, $data);
-        $query;
-    }
+    // function getItem($item_id){
+    //     $data = array(
+    //            'id' => $item_id
+    //         );
+    //     $query = $this->db->get_where($this->item_table, $data);
+    //     if($query->num_rows()>0){
+    //     	$result = $query->result();
+    //     	return $result[0];
+    //     }else return null;
+    // }
 
     /**
      * 根据关键词搜索条目
@@ -160,17 +163,17 @@ class M_item extends CI_Model{
      * @param integer $item_id 条目ID
      * @return boolean 是否存在
      */
-    function itemExist($item_id){
-        $data = array(
-                      'id' => $item_id
-                   );
-               $query = $this->db->get_where($this->item_table, $data);
-        if($query->num_rows() > 0){
-            return true;
-        }else {
-            return false;
-        }
-    }
+    // function itemExist($item_id){
+    //     $data = array(
+    //                   'id' => $item_id
+    //                );
+    //            $query = $this->db->get_where($this->item_table, $data);
+    //     if($query->num_rows() > 0){
+    //         return true;
+    //     }else {
+    //         return false;
+    //     }
+    // }
 
 
 
