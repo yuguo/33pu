@@ -21,17 +21,17 @@ class M_item extends CI_Model{
                'cid' => $_POST['cid'],
                'click_url' =>  $_POST['click_url'],
                'price' => $_POST['price'],
-               'sellernick' => $_POST['sellernick']
+               'sellernick' => $_POST['sellernick'],
+               'num_iid' => $_POST['num_iid']
             );
-
 	
-	$this->db->insert('item', $data);
-	return $data['title'];
+		$this->db->insert('item', $data);
+		return $data['title'];
 	}
 
-	function delete_item(){
+	function delete_item($item_id){
 		$data = array(
-               'id' => $_POST['item_id']
+               'id' => $item_id
             );
 		$this->db->delete('item', $data);
 		echo '1';
@@ -72,7 +72,6 @@ class M_item extends CI_Model{
 
 		//如果是分类页
 		if(!empty($cat)){
-			$this->db->select('click_count,id,title,click_url,img_url,price,sellernick');
 			$where = "cid=cat_id AND cat_slug='".$cat."'";
 			$this->db->join($this->cat_table,$where);
 			$this->db->order_by('id DESC');
@@ -86,7 +85,6 @@ class M_item extends CI_Model{
 
 		return $query;
 	}
-
 
 	/**
 	 * 获得某类别条目总数

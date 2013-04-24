@@ -12,9 +12,7 @@ class M_taobaoapi extends CI_Model{
 
 		//淘宝客PID请在application/config/site_info中设置
         define('PID',    $this->config->item('taobaoke_pid'));
-
-        $http_proxy = $this->config->item('http_proxy');
-        define('PU_HTTP_PROXY',    $http_proxy);
+        define('PU_HTTP_PROXY',    $this->config->item('http_proxy'));
 
         include "taobaoapi/TopSdk.php";
 	}
@@ -61,20 +59,22 @@ class M_taobaoapi extends CI_Model{
      * @return string $resp 包含图片列表的XML
      */
     function getItemInfo($item_id){
-        $c = new TopClient;
-        $c->appkey = APPKEY;
-        $c->secretKey = SECRETKEY;
-        $req = new ItemGetRequest;
-        //prop_imgs 选择颜色的时候出现的图
-        //item_imgs->item_img->url 所有的大图
-        //desc 好像很厉害的样子
-        $req->setFields("prop_img.url,item_img.url,nick");
-        //	$req->setFields("detail_url,num_iid,title,nick,type,cid,seller_cids,props,input_pids,input_str,desc,pic_url,num,valid_thru,list_time,delist_time,stuff_status,location,price,post_fee,express_fee,ems_fee,has_discount,freight_payer,has_invoice,has_warranty,has_showcase,modified,increment,approve_status,postage_id,product_id,auction_point,property_alias,item_img,prop_img,sku,video,outer_id,is_virtual");
-        $req->setNumIid($item_id);
-        $resp = $c->execute($req);
-
-
-        return $resp;
+        if($item_id == ''){
+            return '';
+        }else{
+            $c = new TopClient;
+            $c->appkey = APPKEY;
+            $c->secretKey = SECRETKEY;
+            $req = new ItemGetRequest;
+            //prop_imgs 选择颜色的时候出现的图
+            //item_imgs->item_img->url 所有的大图
+            //desc 好像很厉害的样子
+            $req->setFields("prop_img.url,item_img.url,nick,num_iid");
+            //  $req->setFields("detail_url,num_iid,title,nick,type,cid,seller_cids,props,input_pids,input_str,desc,pic_url,num,valid_thru,list_time,delist_time,stuff_status,location,price,post_fee,express_fee,ems_fee,has_discount,freight_payer,has_invoice,has_warranty,has_showcase,modified,increment,approve_status,postage_id,product_id,auction_point,property_alias,item_img,prop_img,sku,video,outer_id,is_virtual");
+            $req->setNumIid($item_id);
+            $resp = $c->execute($req);
+            return $resp;
+        }
     }
 
     function getCats($parentid){

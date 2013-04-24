@@ -124,15 +124,13 @@ class Admin extends CI_Controller {
 			$this->pagination->initialize($config);
 			//初始化配置
 
-			$data['limit']=$limit;
-			$data['offset']=$offset;
 			$data['pagination']=$this->pagination->create_links();
 			//通过数组传递参数
 			//以上是重点
 
+			$data['query'] = $this->M_item->get_all_item($limit,$offset);
+			$data['cat'] = $this->M_cat->get_all_cat();
 
-			$query = $this->M_cat->get_all_cat();
-			$data['cat'] = $query;
 			$this->load->view('admin/include_header');
 			$this->load->view('admin/status/items_view',$data);
 		}
@@ -212,7 +210,33 @@ class Admin extends CI_Controller {
 	 * 删除条目
 	 */
 	public function delete_item(){
-		$this->M_item->delete_item();
+		$item_id = $_POST['item_id'];
+		$this->M_item->delete_item($item_id);
+	}
+
+	/**
+	 * 删除所有过期条目
+	 */
+	public function clear_expire(){
+
+		$query = $this->M_item->get_all_item(99999, 0);
+		$return_string = '成功删除下架商品：';
+		foreach ($query->result() as $item) {
+			$this->load->model('M_taobaoapi');
+			$taobao_id = '';
+	        if($item->num_iid){
+	        	$taobao_id = $item->num_iid;
+	        }
+	        $item_id = $item->id;
+	        $resp = $this->M_taobaoapi->getiteminfo($taobao_id);
+	        if($resp && $resp->code){
+	        	$this->M_item->delete_item($item_id);
+	        	$return_string = $return_string.$item_id;
+	        }
+	        //$return_string = $resp;
+		}
+		$return_string = $return_string.'<a href="'.site_url('admin/status/items').'">返回</a>';
+		print_r($return_string);
 	}
 
     /**
@@ -220,30 +244,30 @@ class Admin extends CI_Controller {
      *
      * @return string $resp json字符串，包含所有的相关图片
      */
-	public function getiteminfo(){
-        $this->load->model('M_taobaoapi');
-        $item_id = $_GET['item_id'];
-        $resp = $this->M_taobaoapi->getiteminfo($item_id);
+	// public function getiteminfo(){
+ //        $this->load->model('M_taobaoapi');
+ //        $item_id = $_GET['item_id'];
+ //        $resp = $this->M_taobaoapi->getiteminfo($item_id);
 
-        $img_url_array =array();
+ //        $img_url_array =array();
 
-        if($resp->item->item_imgs){
-            foreach($resp->item->item_imgs->item_img as $item_img){
-                array_push($img_url_array,(string)$item_img->url);
-            }
-        }
+ //        if($resp->item->item_imgs){
+ //            foreach($resp->item->item_imgs->item_img as $item_img){
+ //                array_push($img_url_array,(string)$item_img->url);
+ //            }
+ //        }
 
-        if($resp->item->prop_imgs){
-            foreach($resp->item->prop_imgs->prop_img as $prop_img){
-                array_push($img_url_array,(string)$prop_img->url);
-            }
-        }
+ //        if($resp->item->prop_imgs){
+ //            foreach($resp->item->prop_imgs->prop_img as $prop_img){
+ //                array_push($img_url_array,(string)$prop_img->url);
+ //            }
+ //        }
 
-        $item_info_array = array();
-        $item_info_array['imgs'] = $img_url_array;
+ //        $item_info_array = array();
+ //        $item_info_array['imgs'] = $img_url_array;
 
-        echo json_encode($item_info_array);
-	}
+ //        echo json_encode($item_info_array);
+	// }
 
 	/**
 	 * 设置条目信息

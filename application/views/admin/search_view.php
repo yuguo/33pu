@@ -64,6 +64,7 @@ function puPrintItem($resp){
 				$item.price = $(this).data('price');
 				$item.click_url = $(this).attr('href');
 				$item.cid = global_cid;
+				$item.num_iid = $(this).data('taobaoke_id');
 				$errorMessage = '';
 
 				$.post('<?php echo site_url("admin/setitem/")?>',
@@ -72,7 +73,8 @@ function puPrintItem($resp){
 							cid: $item.cid,
 							sellernick: $item.sellernick,
 							click_url: $item.click_url,
-							price: $item.price
+							price: $item.price,
+							num_iid: $item.num_iid
 						   },
 						   function(data) {
 						   	$errorMessage = data;

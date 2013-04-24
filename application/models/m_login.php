@@ -55,6 +55,10 @@ class M_login extends CI_Model{
 				 'type' => 'VARCHAR',
 				 'constraint' => '128',
 		  ),
+			'num_iid' => array(
+				 'type' => 'VARCHAR',
+				 'constraint' => '128',
+		  ),
 		);
 
 		$this->dbforge->add_field($fields_item);

@@ -1,20 +1,6 @@
-<?php
-
-/*
-  * 判断url中是否包含slug
-  */
-if(!empty($cat_slug)){
-	$query=$this->M_item->get_all_item($limit,$offset,$cat_slug);
-}else{
-	$query=$this->M_item->get_all_item($limit,$offset);
-}
-
-
-?>
-
-
 <div id="page-items">
 
+    <div class="pull-right"><a href="<?php echo site_url('admin/clear_expire') ?>" class="btn btn-danger">删除所有下架商品</a></div>
 	<ul class="nav nav-pills">
       <li class="active"><a href="<?php echo site_url('admin/status/items')?>">按条目</a></li>
       <li class=""><a href="<?php echo site_url('admin/status/shops')?>">按店铺</a></li>
@@ -46,7 +32,7 @@ if(!empty($cat_slug)){
         <td><?php echo $array->sellernick ?></td>
         <td><strong><?php echo $array->price ?></strong></td>
         <td><?php echo site_url('home/redirect').'/'.$array->id ?></td>
-        <td><a href="items_view.php#" title="删除此条" class="btn_delete" data-itemid="<?php echo $array->id; ?>">删除</a></td>
+        <td><a href="##" title="删除此条" class="btn_delete" data-itemid="<?php echo $array->id; ?>">删除</a></td>
       </tr>
 	<?php
     //条目结束
