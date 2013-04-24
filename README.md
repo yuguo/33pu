@@ -47,7 +47,15 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 
 比如`http://localhost/33pu/` 即为 `33pu` ，如果是在根目录比如 `http://localhost/` 即为 `/`。
 
-增加`.htaccess`文件之后，在访问站点的时候就不再需要加上index.php。
+增加`.htaccess`文件之后，再修改`application/config/config.php`的
+
+	$config['index_page'] = 'index.php';
+
+修改为
+
+	$config['index_page'] = '';
+
+这样在访问站点的时候就不再需要加上index.php。
 
 ## Nginx配置说明 ##
 
@@ -61,6 +69,15 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 	}
 }</pre>
 
+同理，再修改`application/config/config.php`的
+
+	$config['index_page'] = 'index.php';
+
+修改为
+
+	$config['index_page'] = '';
+
+这样在访问站点的时候就不再需要加上index.php。
 
 ## 联系 ##
 
