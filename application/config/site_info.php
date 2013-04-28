@@ -21,3 +21,8 @@ $config['secretkey'] = 'd4cb57d3eec5d6f1cbbfd0f430caf282';
 //举例：腾讯公司内部的代理服务器如下：
 //$config['http_proxy'] = 'http://proxy.tencent.com:8080';
 $config['http_proxy'] = '';
+
+//SEO
+//关键词列表用英文逗号隔开
+$config['site_keyword'] = '淘宝,男装,裤子,33号铺';
+$config['site_description'] = '33号铺是一个简单好用的淘宝客瀑布流发布、管理系统。';

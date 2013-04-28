@@ -70,6 +70,10 @@ class Cat extends CI_Controller {
 		//站点信息
 		$data['site_name'] = $this->config->item('site_name');
 
+		//keysords和description
+		$data['site_keyword'] = $this->config->item('site_keyword');
+		$data['site_description'] = $this->config->item('site_description');
+
 		$this->load->view('home_view',$data);
 
 	}

@@ -8,6 +8,12 @@
 	}
 	 echo $site_name;
 	 ?></title>
+	<meta name="keywords" content="<?php 
+	if(!empty($cat_name)){
+		echo $cat_name.',';
+	}
+		echo $site_keyword; ?>">
+	<meta name="description" content="<?php echo $site_description; ?>">
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/index.css?d=20120705" />
 	<!--[if lt IE 9]>

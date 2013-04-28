@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 	<title><?php echo $site_name;?></title>
+	<meta name="keywords" content="<?php 
+	if(!empty($keyword)){
+		echo $keyword.',';
+	}
+		echo $site_keyword; ?>">
+	<meta name="description" content="<?php echo $site_description; ?>">
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" media="all" href="<?php echo base_url()?>assets/index.css?d=20120705" />
 	<!--[if lt IE 9]>
