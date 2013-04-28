@@ -12,6 +12,7 @@ class Cat extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_item');
+		$this->load->model('M_cat');
 		$this->load->model('M_keyword');
 		$this->load->library('pagination');
 	}
@@ -55,6 +56,8 @@ class Cat extends CI_Controller {
 		//关键词列表，这个在后台配置
 		$data['keyword_list'] = $this->M_keyword->get_all_keyword(5);
 
+		//分类标题
+		$data['cat_name'] = $this->M_cat->get_cat_name($cat_slug_decode);
 
 		$this->load->model('M_cat');
 		$data['cat']=$this->M_cat->get_all_cat();

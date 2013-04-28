@@ -25,7 +25,15 @@ class M_cat extends CI_Model{
                         );
             $this->db->insert($this->cat_table, $data);
         }
+    }
 
+    function get_cat_name($cat_slug = ''){
+    	if(!empty($cat_slug)){
+    		$result = $this->db->get_where($this->cat_table, array('cat_slug'=>$cat_slug))->result();
+    		return $result[0]->cat_name;
+    	}else {
+    		return '';
+    	}
     }
 
 	function get_all_cat()
