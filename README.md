@@ -15,7 +15,8 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 或者下载最新的ZIP
 
 ## 安装 ##
-1. 配置 `application/config/config.php` 为你的站点url，配置 `application/config/site_info.php` 中的站点名称、appkey、secret还有最重要的taobaoke pid。具体见说明。
+1. 配置 `application/config/config.php` 为你的站点url，配置 `application/config/site_info.php` 中的站点名称、appkey、secret<del>还有最重要的taobaoke pid</del>。taobaoke pid不再作为参数传入，现在是以自己的开发账户为准，官方解释如下：
+	未来pid、nick入参将取消，程序会自动根据appkey对应的nick去查询pid。pid、nick入参将兼容支持到10月31日，请ISV做好改造工作，不要传入pid或nick。
 2. 首先自己在数据库中创建一个数据库（比如使用phpmyadmin之类的可视化工具
 ），然后配置 `application/database` 中的 `username`，`password`，`database`
 3. 访问 `站点url/index.php/login/install` ，输入管理员的email和密码

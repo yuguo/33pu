@@ -10,8 +10,6 @@ class M_taobaoapi extends CI_Model{
         define('APPKEY',    $this->config->item('appkey'));
         define('SECRETKEY',    $this->config->item('secretkey'));
 
-		//淘宝客PID请在application/config/site_info中设置
-        define('PID',    $this->config->item('taobaoke_pid'));
         define('PU_HTTP_PROXY',    $this->config->item('http_proxy'));
 
         include "taobaoapi/TopSdk.php";
@@ -34,7 +32,6 @@ class M_taobaoapi extends CI_Model{
 
     	$req = new TaobaokeItemsGetRequest;
     	$req->setFields("num_iid,title,click_url,pic_url,price,commission,commission_num,volume,nick");
-    	$req->setPid(PID);
 
     	$req->setCid($cid);
     	$req->setKeyword($keyword);
