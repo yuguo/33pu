@@ -53,7 +53,7 @@
 				event.preventDefault();
 				var item = {},
 					thisItem = $(this),
-					successMessage = '<div class="alert alert-success" style="position: absolute;width: 150px;bottom: 0;margin-bottom: 0;}">添加成功！</div>';
+					successMessage = '<div class="alert alert-success">添加成功！</div>';
 
 				item.img_url = thisItem.find('img').attr('src');
 				item.sellernick = thisItem.data('sellernick');
