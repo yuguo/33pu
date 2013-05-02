@@ -54,9 +54,6 @@ class Admin extends CI_Controller {
 
         /* cid是类别id */
         $cid = '0';
-        if(!empty($_GET['cat_select'])){
-            $cid = $_GET['cat_select'];
-        }
 
         $data['resp'] = $this->M_taobaoapi->searchItem($keyword, $cid);
         $data['keyword'] =  $keyword;

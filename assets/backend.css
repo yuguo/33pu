@@ -44,7 +44,7 @@ body {padding-top:40px;}
 #search-list {overflow:hidden;*zoom:1;}
 #search-list p {margin:2px 0;}
 #search-list li {float:left;padding:5px;background: #F7F7F7;margin:0 10px 10px 0;list-style-type:none;color:#B3B3B3;}
-#search-list li a {display:block;cursor:pointer;}
+#search-list li a {display:block;cursor:pointer;position:relative;}
 #search-list li img {height:200px;}
 
 

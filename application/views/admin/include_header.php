@@ -16,7 +16,7 @@
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="">
-                <a href="<?php echo site_url('admin')?>">添加条目</a>
+                <a href="<?php echo site_url('admin')?>">添加商品</a>
               </li>
               <li class="">
                 <a href="<?php echo site_url('admin/cat')?>">类别</a>
