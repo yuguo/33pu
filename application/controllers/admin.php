@@ -244,30 +244,30 @@ class Admin extends CI_Controller {
      *
      * @return string $resp json字符串，包含所有的相关图片
      */
-	// public function getiteminfo(){
- //        $this->load->model('M_taobaoapi');
- //        $item_id = $_GET['item_id'];
- //        $resp = $this->M_taobaoapi->getiteminfo($item_id);
+	public function getiteminfo(){
+        $this->load->model('M_taobaoapi');
+        $item_id = $_GET['item_id'];
+        $resp = $this->M_taobaoapi->getiteminfo($item_id);
 
- //        $img_url_array =array();
+        $img_url_array =array();
 
- //        if($resp->item->item_imgs){
- //            foreach($resp->item->item_imgs->item_img as $item_img){
- //                array_push($img_url_array,(string)$item_img->url);
- //            }
- //        }
+        if($resp->item->item_imgs){
+            foreach($resp->item->item_imgs->item_img as $item_img){
+                array_push($img_url_array,(string)$item_img->url);
+            }
+        }
 
- //        if($resp->item->prop_imgs){
- //            foreach($resp->item->prop_imgs->prop_img as $prop_img){
- //                array_push($img_url_array,(string)$prop_img->url);
- //            }
- //        }
+        if($resp->item->prop_imgs){
+            foreach($resp->item->prop_imgs->prop_img as $prop_img){
+                array_push($img_url_array,(string)$prop_img->url);
+            }
+        }
 
- //        $item_info_array = array();
- //        $item_info_array['imgs'] = $img_url_array;
+        $item_info_array = array();
+        $item_info_array['imgs'] = $img_url_array;
 
- //        echo json_encode($item_info_array);
-	// }
+        echo json_encode($item_info_array);
+	}
 
 	/**
 	 * 设置条目信息
