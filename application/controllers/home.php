@@ -104,7 +104,6 @@ class Home extends CI_Controller {
 		//关键词列表，这个在后台配置
 		$data['keyword_list'] = $this->M_keyword->get_all_keyword(5);
 
-		$data['pid'] = PID;
 
 		//搜索条目的结果
 		$data['resp'] = $this->M_item->searchItem($data['keyword']);
