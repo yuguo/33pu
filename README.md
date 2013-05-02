@@ -42,47 +42,9 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 - 整站的JS都是基于[jQuery](http://jquery.com/)构建。
 - 数据来源于[淘宝开放平台](http://open.taobao.com/index.htm)。
 
-## Apache配置说明 ##
-	
-如果你不爽url后面都跟着一大串`index.php`，那么可以在站点根目录加上`.htaccess`文件，参考`.htaccess.example`即可。
-
-比如`http://localhost/33pu/` 即为 `33pu` ，如果是在根目录比如 `http://localhost/` 即为 `/`。
-
-增加`.htaccess`文件之后，再修改`application/config/config.php`的
-
-	$config['index_page'] = 'index.php';
-
-修改为
-
-	$config['index_page'] = '';
-
-这样在访问站点的时候就不再需要加上index.php。
-
-## Nginx配置说明 ##
-
-<pre>location / {
-	index index.php;
-	if (-f $request_filename/index.php){
-	        rewrite (.*) $1/index.php;
-	}
-	if (!-f $request_filename){
-	        rewrite (.*) /index.php;
-	}
-}</pre>
-
-同理，再修改`application/config/config.php`的
-
-	$config['index_page'] = 'index.php';
-
-修改为
-
-	$config['index_page'] = '';
-
-这样在访问站点的时候就不再需要加上index.php。
-
 ## 联系 ##
 
-遇到问题先看[FAQ](https://github.com/yuguo/33pu/wiki/FAQ)，再更新到最新版看看问题有无解决，如果还有问题请联系Yuguo。
+遇到问题先看[wiki](https://github.com/yuguo/33pu/wiki)，再更新到最新版看看问题有无解决，如果还有问题请加QQ群。大家有解决过的问题也可以编辑wiki页，活跃用户提升权限。
 
 代码还在不断完善中，有任何意见和建议：
 
