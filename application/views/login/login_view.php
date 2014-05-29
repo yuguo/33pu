@@ -42,4 +42,4 @@ if(isset($_POST['user_email']) && isset($_POST['user_password'])){
 
 </div>
 </body>
-<html>
+</html>
