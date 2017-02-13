@@ -70,7 +70,7 @@ Clone代码到本地，`git clone git://github.com/yuguo/33pu.git`
 
 代码还在不断完善中，有任何意见和建议：
 
-- QQ群：230831981（敲门砖：33号铺）
+- 全栈工程师QQ群：364021031（需付费）
 - Email：fishguo321@gmail.com
 - 腾讯微博：[http://t.qq.com/chandleryu](http://t.qq.com/chandleryu)
 - Twitter：[yuguo](https://twitter.com/yuguo)
